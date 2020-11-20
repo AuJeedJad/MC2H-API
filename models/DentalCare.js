@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Dentalcare = sequelize.define(
+  const DentalCare = sequelize.define(
     'DentalCare',
     {
       isMouthCare: {
@@ -23,5 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  return Dentalcare;
+
+  DentalCare.associate = (models) => {
+    DentalCare.belongsTo(models.DentalExam);
+  };
+
+  return DentalCare;
 };

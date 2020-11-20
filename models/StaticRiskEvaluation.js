@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'static_risk_evaluations',
+      tableName: 'static_risk_evalutions',
       timestamps: false,
     }
   );

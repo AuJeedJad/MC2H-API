@@ -14,5 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       updateAt: false,
     }
   );
+  UltrasoundImage.associate = models => {
+    UltrasoundImage.belongsTo(models.UltrasoundResult, { foreignKey: "usResultId" });
+  };
   return ultrasoundImage;
 };

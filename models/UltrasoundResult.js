@@ -46,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
       updateAt: 'lastEdit',
     }
   );
-
+  UltrasoundResult.associate = models => {
+    UltrasoundResult.belongsTo(models.ANC, { foreignKey: "ancId" });
+  };
+  UltrasoundResult.associate = models => {
+    UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: "usResultId" });
+  };
+  
   return ultrasoundResult;
 };

@@ -56,7 +56,10 @@ module.exports = (sequelize, DataTypes) => {
     ANC.hasMany(models.UltrasoundResult, { foreignKey: 'ancId' });
   };
   ANC.associate = (models) => {
-    ANC.hasMany(models.periodCheck, { foreignKey: 'ancId' });
+    ANC.hasMany(models.PeriodCheck, { foreignKey: 'ancId' });
+  };
+  ANC.associate = (models) => {
+    ANC.hasMany(models.SpecialExamination, { foreignKey: 'ancId' });
   };
   ANC.associate = (models) => {
     ANC.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });

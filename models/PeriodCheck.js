@@ -1,21 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-    const periodCheck = sequelize.define(
-      'PeriodCheck',
-      {
-        plan: {
-          type: DataTypes.STRING,
-        },
-        isChecked: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        }
+  const PeriodCheck = sequelize.define(
+    'PeriodCheck',
+    {
+      plan: {
+        type: DataTypes.STRING,
       },
-      {
-        tableName: 'period_checks',
-        timestamps: false,
-      }
-    );
-  
-    return periodCheck;
-  };
-  
+      isChecked: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: 'period_checks',
+      timestamps: false,
+    }
+  );
+
+  return PeriodCheck;
+};

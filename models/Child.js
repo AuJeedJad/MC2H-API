@@ -17,5 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  Child.associate = models => {
+    Child.hasMany(models.PregnantHistory);
+    Child.belongsTo(models.FatherProfile, { foreignKey: 'fatherId' });
+    Child.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
+  }
+
   return Child;
 };

@@ -27,5 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  Contraception.associate = models => {
+    Contraception.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
+  }
+
   return Contraception;
 };

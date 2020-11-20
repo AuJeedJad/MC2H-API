@@ -54,6 +54,5 @@ module.exports = (sequelize, DataTypes) => {
   UltrasoundResult.associate = (models) => {
     UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: 'usResultId' });
   };
-
   return UltrasoundResult;
 };

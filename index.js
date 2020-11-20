@@ -21,6 +21,6 @@ app.listen(process.env.PORT, () => {
   console.log(`Server is running at ${process.env.PORT}`);
 });
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   console.log('Completed Connect And Sync');
 });

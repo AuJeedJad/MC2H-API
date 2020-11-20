@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
         plan: {
           type: DataTypes.STRING,
         },
+        isChecked: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        }
       },
       {
         tableName: 'period_checks',

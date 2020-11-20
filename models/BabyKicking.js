@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Babykicking = sequelize.defind(
+  const BabyKicking = sequelize.define(
     'BabyKicking',
     {
       date: {
@@ -14,5 +14,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  return Babykicking;
+  return BabyKicking;
 };

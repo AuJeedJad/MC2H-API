@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Riskevaluation = sequelize.define(
+  const RiskEvaluation = sequelize.define(
     'RiskEvaluation',
     {
       isCheck: {
@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   RiskEvaluation.associate = (models) => {
-    RiskEvaluation.hasMany(models.Staticriskevalution);
+    RiskEvaluation.hasMany(models.StaticRiskEvaluation);
   };
 
-  return Riskevaluation;
+  return RiskEvaluation;
 };

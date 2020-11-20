@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'drug_allergy',
+      tableName: 'drug_allergies',
       timestamps: true,
     }
   );
 
   DrugAllergy.association = (models) => {
-    DrugAllergy.belongsTo(models.MotherMedicalHistory);
+    DrugAllergy.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
   };
 
   return DrugAllergy;

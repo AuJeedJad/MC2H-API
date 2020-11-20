@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const ultrasoundImage = sequelize.define(
+  const UltrasoundImage = sequelize.define(
     'UltrasoundImage',
     {
       ultrasoundImage: {
@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       updateAt: false,
     }
   );
-  UltrasoundImage.associate = models => {
-    UltrasoundImage.belongsTo(models.UltrasoundResult, { foreignKey: "usResultId" });
+
+  UltrasoundImage.associate = (models) => {
+    UltrasoundImage.belongsTo(models.UltrasoundResult, { foreignKey: 'usResultId' });
   };
-  return ultrasoundImage;
+  return UltrasoundImage;
 };

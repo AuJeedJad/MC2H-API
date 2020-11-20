@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   FamilyMedicalHistory.association = (models) => {
-    FamilyMedicalHistory.belongsTo(models.MotherMedicalHistory);
+    FamilyMedicalHistory.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
   };
 
   return FamilyMedicalHistory;

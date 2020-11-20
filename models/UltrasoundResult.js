@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const ultrasoundResult = sequelize.define(
+  const UltrasoundResult = sequelize.define(
     'UltrasoundResult',
     {
       BPD: {
@@ -53,5 +53,5 @@ module.exports = (sequelize, DataTypes) => {
     UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: "usResultId" });
   };
   
-  return ultrasoundResult;
+  return UltrasoundResult;
 };

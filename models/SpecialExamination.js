@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const specialExamination = sequelize.define(
+    const SpecialExamination = sequelize.define(
       'SpecialExamination',
       {
         examination: {
@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
         updateAt: 'lastEdit',
       }
     );
+
+    SpecialExamination.associate = models => {
+      SpecialExamination.belongsTo(models.ANC, { foreignKey: "ancId" });
+    };
   
-    return specialExamination;
+    return SpecialExamination;
   };
   

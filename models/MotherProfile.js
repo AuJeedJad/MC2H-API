@@ -48,6 +48,8 @@ module.exports = (sequelize, DataTypes) => {
   MotherProfile.association = (models) => {
     MotherProfile.hasOne(models.MotherAddress, { foreignKey: 'motherId' });
     MotherProfile.hasOne(models.MotherMedicalHistory, { foreignKey: 'motherId' });
+    MotherProfile.hasMany(models.PregnantHistory, { foreignKey: 'motherId' });
+    MotherProfile.hasMany(models.CurrentPregnancy, { foreignKey: 'motherId' });
   };
 
   return MotherProfile;

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Dantalexam = sequelize.define(
+  const DentalExam = sequelize.define(
     'DentalExam',
     {
       toothDecay: {
@@ -22,9 +22,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'dental_exam',
-      timestamps: false,
+      tableName: 'dental_exams',
+      timestamps: false
     }
-  );
-  return Dantalexam;
+  )
+
+  DentalExam.associate = (models) => {
+    DentalExam.hasMany(models.DentalAppointment);
+    DentalExam.hasOne(models.DentalCare);
+  };
+  
+
+  return DentalExam;
 };

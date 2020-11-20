@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  MotherAddress.association = (models) => {
+  MotherAddress.associate = (models) => {
     MotherAddress.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
   };
 

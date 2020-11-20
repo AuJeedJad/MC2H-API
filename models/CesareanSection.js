@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  CesareanSection.association = (models) => {
+  CesareanSection.associate = (models) => {
     CesareanSection.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
   };
 

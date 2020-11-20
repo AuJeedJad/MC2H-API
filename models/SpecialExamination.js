@@ -18,5 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  SpecialExamination.associate = (models) => {
+    SpecialExamination.belongsTo(models.ANC, { foreignKey: 'ancId' });
+  };
+
   return SpecialExamination;
 };

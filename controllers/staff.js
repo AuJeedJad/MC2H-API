@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const targetUser = await db.Staff.findOne({ where: { username } });
+    const targetUser = await db.Staff.findOne({ where: { username, isActive: true } });
     if (!targetUser) {
       res.status(400).send({ message: 'Username or Password is wrong.' });
     } else {
@@ -20,7 +20,7 @@ const login = async (req, res) => {
         res.status(200).send({ token });
       }
     }
-  }catch(err){
+  } catch (err) {
     res.status(500).send({ message: err.message })
   }
 };

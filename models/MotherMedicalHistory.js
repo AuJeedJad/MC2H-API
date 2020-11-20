@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
 
   MotherMedicalHistory.association = (models) => {
     MotherMedicalHistory.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
-    MotherMedicalHistory.hasOne(models.FamilyMedicalHistory);
-    MotherMedicalHistory.hasMany(models.DrugAllergy);
-    MotherMedicalHistory.hasMany(models.CesareanSection);
+    MotherMedicalHistory.hasOne(models.FamilyMedicalHistory, { foreignKey: 'motherMedHistoryId' });
+    MotherMedicalHistory.hasMany(models.DrugAllergy, { foreignKey: 'motherMedHistoryId' });
+    MotherMedicalHistory.hasMany(models.CesareanSection, { foreignKey: 'motherMedHistoryId' });
   };
 
   return MotherMedicalHistory;

@@ -35,5 +35,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  CurrentPregnancy.associate = models => {
+    CurrentPregnancy.hasMany(models.Child, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasOne(models.Contraception, { foreignKey: 'curPregId' });
+  }
+
   return CurrentPregnancy;
 };

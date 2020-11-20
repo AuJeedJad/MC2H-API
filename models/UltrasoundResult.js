@@ -3,40 +3,40 @@ module.exports = (sequelize, DataTypes) => {
     'UltrasoundResult',
     {
       BPD: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       FL: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       HC: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       AC: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       AFI: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
       },
       placenta: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       EFW: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       gestationalAge: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       isCorrect: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
       },
       note: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       risk: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       examBy: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
     },
     {
@@ -46,12 +46,13 @@ module.exports = (sequelize, DataTypes) => {
       updateAt: 'lastEdit',
     }
   );
-  UltrasoundResult.associate = models => {
-    UltrasoundResult.belongsTo(models.ANC, { foreignKey: "ancId" });
+
+  UltrasoundResult.associate = (models) => {
+    UltrasoundResult.belongsTo(models.ANC, { foreignKey: 'ancId' });
   };
-  UltrasoundResult.associate = models => {
-    UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: "usResultId" });
+
+  UltrasoundResult.associate = (models) => {
+    UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: 'usResultId' });
   };
-  
   return UltrasoundResult;
 };

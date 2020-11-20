@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Dentalappointment = sequelize.define(
+  const DentalAppointment = sequelize.define(
     'DentalAppointment',
     {
       date: {
@@ -22,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
     DentalAppointment.belongsTo(models.RiskEvaluation);
   };
 
-  return Dentalappointment;
+  return DentalAppointment;
 };

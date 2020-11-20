@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'cesarean_section',
+      tableName: 'cesarean_sections',
       timestamps: true,
     }
   );
 
   CesareanSection.association = (models) => {
-    CesareanSection.belongsTo(models.MotherMedicalHistory);
+    CesareanSection.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
   };
 
   return CesareanSection;

@@ -18,5 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  Staff.associate = models => {
+    Staff.belongsTo(models.Hospital);
+  }
+
   return Staff;
 }

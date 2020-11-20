@@ -27,5 +27,9 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
     });
 
+    FamilyMedicalHistory.association = models => {
+        FamilyMedicalHistory.belongsTo(models.MotherProfile, {foreignKey: "motherId"});
+    }
+
     return FamilyMedicalHistory;
 }

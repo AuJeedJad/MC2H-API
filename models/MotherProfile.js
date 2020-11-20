@@ -42,5 +42,10 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
     });
 
+    MotherProfile.association = models => {
+        MotherProfile.hasOne(models.MotherMedicalHistory, {foreignKey: "motherId"});
+        MotherProfile.hasOne(models.FamilyMedicalHistory, {foreignKey: "motherId"});
+    }
+
     return MotherProfile;
 }

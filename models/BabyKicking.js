@@ -14,5 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+
+  CurrentPregnancy.associate = (models) => {
+    BabyKicking.belongTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
+  };
+
   return BabyKicking;
 };

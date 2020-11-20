@@ -23,15 +23,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'dental_exams',
-      timestamps: false
+      timestamps: false,
     }
-  )
+  );
 
   DentalExam.associate = (models) => {
     DentalExam.hasMany(models.DentalAppointment);
     DentalExam.hasOne(models.DentalCare);
+    DentalExam.belongTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
   };
-  
 
   return DentalExam;
 };

@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 
   RiskEvaluation.associate = (models) => {
     RiskEvaluation.hasMany(models.StaticRiskEvaluation);
+    RiskEvaluation.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
   };
 
   return RiskEvaluation;

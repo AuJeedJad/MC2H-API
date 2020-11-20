@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     'UltrasoundImage',
     {
       ultrasoundImage: {
-        type: DataTypes.string,
-        allowNull:false
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

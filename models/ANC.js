@@ -3,43 +3,43 @@ module.exports = (sequelize, DataTypes) => {
     'ANC',
     {
       weight: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
       },
       urineTest: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       bloodPressure: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       uterusSize: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       childPosture: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       heartSound: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       childMove: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       gaByLmp: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
       },
       gaByUs: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
       },
       physicalExamination: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       appointmentDate: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATEONLY
       },
       examBy: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       nutritionEvaResult: {
-        type: DataTypes.ENUM('ปรกติ','ผิดปรกติ','การรักษาเพิ่มเติม','ภาวะเครียด'),
+        type: DataTypes.ENUM('ปรกติ','ผิดปรกติ','การรักษาเพิ่มเติม','ภาวะเครียด')
       },
       nippleExam:{
           type: DataTypes.ENUM('ปรกติ','สั้น','บุ๋ม','บอด')

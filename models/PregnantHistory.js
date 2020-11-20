@@ -29,5 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  PregnantHistory.associate = models => {
+    PregnantHistory.belongsTo(models.Child);
+  }
+
   return PregnantHistory;
 };

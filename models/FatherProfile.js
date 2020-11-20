@@ -23,5 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  FatherProfile.associate = models => {
+    FatherProfile.hasOne(models.Child, { foreignKey: 'fatherId' });
+  }
+
   return FatherProfile;
 };

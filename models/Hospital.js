@@ -30,5 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
 
+  Hospital.associate = models => {
+    Hospital.hasMany(models.Staff);
+  }
+
   return Hospital;
 };

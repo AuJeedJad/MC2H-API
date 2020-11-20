@@ -52,22 +52,13 @@ module.exports = (sequelize, DataTypes) => {
       updateAt: 'lastEdit',
     }
   );
+
   ANC.associate = (models) => {
     ANC.hasMany(models.UltrasoundResult, { foreignKey: 'ancId' });
-  };
-  ANC.associate = (models) => {
     ANC.hasMany(models.PeriodCheck, { foreignKey: 'ancId' });
-  };
-  ANC.associate = (models) => {
     ANC.hasMany(models.SpecialExamination, { foreignKey: 'ancId' });
-  };
-  ANC.associate = (models) => {
     ANC.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
-  };
-  ANC.associate = (models) => {
     ANC.belongsTo(models.Hospital, { foreignKey: 'checkHospitalId' });
-  };
-  ANC.associate = (models) => {
     ANC.belongsTo(models.Hospital, { foreignKey: 'nextHospitalId' });
   };
 

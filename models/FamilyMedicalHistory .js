@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  FamilyMedicalHistory.associate = (models) => {
+  FamilyMedicalHistory.association = (models) => {
     FamilyMedicalHistory.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
   };
 

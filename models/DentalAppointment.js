@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   DentalAppointment.associate = (models) => {
-    DentalAppointment.belongsTo(models.RiskEvaluation);
+    DentalAppointment.belongsTo(models.DentalExam);
   };
 
   return DentalAppointment;

@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'mother_addresses',
-      timestamps: true,
+      timestamps: false,
     }
   );
 

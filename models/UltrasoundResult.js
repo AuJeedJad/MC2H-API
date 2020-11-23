@@ -42,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: 'ultrasound_results',
       timestamps: true,
-      createAt: 'examDate',
-      updateAt: 'lastEdit',
+      createdAt: 'examDate',
+      updatedAt: 'lastEdit',
     }
   );
 

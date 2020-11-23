@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: 'ultrasound_images',
       timestamps: true,
-      createAt: 'examDate',
-      updateAt: false,
+      createdAt: 'examDate',
+      updatedAt: false,
     }
   );
 

@@ -50,8 +50,16 @@ const motherRegister = async (req, res) => {
   }
 };
 
-const createCurrentPregnancy = (req, res) => {
-  res.send();
+const createCurrentPregnancy = async (req, res) => {
+  try {
+    const { idCard } = req.body;
+    const targetIdCard = await db.MotherProfile.findOne({ where: { idCard } });
+    const newCurrentPregnancy = await db.CurrentPregnancy.create({ motherId: targetIdCard.id });
+
+    res.status(201).send(newCurrentPregnancy);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };
 
 module.exports = {

@@ -48,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: 'ancs',
       timestamps: true,
-      createAt: 'examDate',
-      updateAt: 'lastEdit',
+      createdAt: 'examDate',
+      updatedAt: 'lastEdit',
     }
   );
 

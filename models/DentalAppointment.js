@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   DentalAppointment.associate = (models) => {
-    DentalAppointment.belongsTo(models.DentalExam);
+    DentalAppointment.belongsTo(models.DentalExam, { foreignKey: 'dentalExamId' });
   };
 
   return DentalAppointment;

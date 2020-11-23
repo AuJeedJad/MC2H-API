@@ -6,7 +6,7 @@ const register = async (req, res) => {
     const { username, password, secretKey } = req.body;
     const isCorrect = await bcryptjs.compareSync(secretKey, process.env.HASHED_SECRET_KEY);
     if (!isCorrect) {
-      res.status(400).send({ message: err.message });
+      res.status(400).send({ message: 'Bad request' });
     }
 
     const targetUser = await db.Staff.findOne({ where: { username } });

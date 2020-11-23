@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'father_profiles',
-      timestamps: true,
+      timestamps: false,
     }
   );
 

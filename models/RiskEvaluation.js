@@ -5,21 +5,20 @@ module.exports = (sequelize, DataTypes) => {
       isCheck: {
         type: DataTypes.BOOLEAN,
       },
-      name: {
+      examBy: {
         type: DataTypes.STRING,
-      },
-      date: {
-        type: DataTypes.DATEONLY,
       },
     },
     {
       tableName: 'risk_evaluations',
-      timestamps: false,
+      timestamps: true,
+      createdAt: 'examDate',
+      updatedAt: false,
     }
   );
 
   RiskEvaluation.associate = (models) => {
-    RiskEvaluation.hasMany(models.StaticRiskEvaluation);
+    RiskEvaluation.hasMany(models.StaticRiskEvaluation, { foreignKey: 'riskEvaId' });
     RiskEvaluation.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
   };
 

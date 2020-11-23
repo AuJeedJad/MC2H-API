@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   DentalCare.associate = (models) => {
-    DentalCare.belongsTo(models.DentalExam);
+    DentalCare.belongsTo(models.DentalExam, { foreignKey: 'dentalExamId' });
   };
 
   return DentalCare;

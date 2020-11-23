@@ -1,5 +1,5 @@
-const router = require('express').Router();
 const passport = require('passport');
+const router = require('express').Router();
 const { login, motherRegister, createCurrentPregnancy } = require('../controllers/staff');
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });

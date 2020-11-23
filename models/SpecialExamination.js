@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: 'special_examinations',
       timestamps: true,
-      createAt: 'examDate',
-      updateAt: 'lastEdit',
+      createdAt: 'examDate',
+      updatedAt: 'lastEdit',
     }
   );
 

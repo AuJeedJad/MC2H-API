@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'contraception',
-      timestamps: true,
+      timestamps: false,
     }
   );
 

@@ -3,7 +3,12 @@ const bcryptjs = require('bcryptjs');
 
 const register = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, secretKey } = req.body;
+    const isCorrect = await bcryptjs.compareSync(secretKey, process.env.HASHED_SECRET_KEY);
+    if (!isCorrect) {
+      res.status(400).send({ message: err.message });
+    }
+
     const targetUser = await db.Staff.findOne({ where: { username } });
     if (targetUser) {
       res.status(400).send({ message: 'Username already taken.' });

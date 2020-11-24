@@ -35,7 +35,7 @@ const motherRegister = async (req, res) => {
   try {
     const { idCard, firstName, lastName, phoneNumber } = req.body;
     if (!idCard) {
-      res.status(400).send({ message: 'กรุณาใส่หมายเลขบัตรประชาชนชองหญิงตังครรภ์' });
+      res.status(400).send({ message: 'กรุณาใส่หมายเลขบัตรประชาชนของหญิงตังครรภ์' });
     } else if (idCard.length < 13) {
       res.status(400).send({ message: 'หมายเลขประจำตัวประชาชนไม่ครบ 13 หลัก' });
     } else if (idCard.length > 13) {
@@ -80,7 +80,7 @@ const createCurrentPregnancy = async (req, res) => {
   try {
     const { idCard } = req.body;
     if (!idCard) {
-      res.status(400).send({ message: 'กรุณาใส่หมายเลขบัตรประชาชนชองหญิงตังครรภ์' });
+      res.status(400).send({ message: 'กรุณาใส่หมายเลขบัตรประชาชนของหญิงตังครรภ์' });
     } else if (idCard.length < 13) {
       res.status(400).send({ message: 'หมายเลขประจำตัวประชาชนไม่ครบ 13 หลัก' });
     } else if (idCard.length > 13) {

@@ -3,12 +3,15 @@ const bcryptjs = require('bcryptjs');
 
 const register = async (req, res) => {
   try {
-    const { username, password, secretKey } = req.body;
+    const { username, password, hospitalId, secretKey } = req.body;
     if (!username) {
       return res.status(400).send({ message: 'กรุณาใส่ username' });
     }
     if (!password) {
       return res.status(400).send({ message: 'กรุณาใส่ password' });
+    }
+    if (!hospitalId) {
+      return res.status(400).send({ message: 'กรุณาใส่ hospital id' });
     }
     if (!secretKey) {
       return res.status(400).send({ message: 'กรุณาใส่รหัส admin' });
@@ -29,6 +32,7 @@ const register = async (req, res) => {
         const hashedPassword = bcryptjs.hashSync(password, salt);
         const newStaff = await db.Staff.create({
           username,
+          hospitalId,
           password: hashedPassword,
         });
 

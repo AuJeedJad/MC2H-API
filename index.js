@@ -1,4 +1,6 @@
 require('dotenv').config();
+require('./config/passport');
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -9,15 +11,17 @@ const motherProfileRoute = require('./routes/motherProfile');
 const staticRiskEvaluationRoute = require('./routes/staticRiskEvaluation');
 const riskEvaluationRoute = require('./routes/riskEvaluation');
 const dentalRoute = require('./routes/dental');
+const motherRoute = require('./routes/mother');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-app.use('/admin/staffs', adminRoute);
-app.use('/staffs', staffRoute);
+app.use('/admin/staff', adminRoute);
+app.use('/staff', staffRoute);
 app.use('/motherProfile', motherProfileRoute);
+app.use('/mother', motherRoute);
 
 app.use('/staticRiskEvaluation', staticRiskEvaluationRoute);
 app.use('/riskEvaluation', riskEvaluationRoute);

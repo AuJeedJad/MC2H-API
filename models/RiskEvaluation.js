@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   RiskEvaluation.associate = (models) => {
-    RiskEvaluation.hasMany(models.StaticRiskEvaluation, { foreignKey: 'riskEvaId' });
+    RiskEvaluation.belongsTo(models.StaticRiskEvaluation, { foreignKey: 'staticRiskEvaId', allowNull: false });
     RiskEvaluation.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
   };
 

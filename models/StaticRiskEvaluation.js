@@ -6,15 +6,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      type: {
+        type: DataTypes.ENUM(['History', 'Present', 'Medicine']),
+      },
     },
     {
-      tableName: 'static_risk_evalutions',
+      tableName: 'static_risk_evaluations',
       timestamps: false,
     }
   );
 
   StaticRiskEvaluation.associate = (models) => {
-    StaticRiskEvaluation.belongsTo(models.RiskEvaluation, { foreignKey: 'riskEvaId' });
+    StaticRiskEvaluation.hasMany(models.RiskEvaluation, { foreignKey: 'staticRiskEvaId' });
   };
 
   return StaticRiskEvaluation;

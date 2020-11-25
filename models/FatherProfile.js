@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   FatherProfile.associate = (models) => {
-    FatherProfile.hasOne(models.Child, { foreignKey: 'fatherId' });
+    FatherProfile.hasMany(models.CurrentPregnancy, { foreignKey: 'fatherId' });
   };
 
   return FatherProfile;

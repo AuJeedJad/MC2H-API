@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     CurrentPregnancy.hasMany(models.Child, { foreignKey: 'curPregId' });
     CurrentPregnancy.hasOne(models.Contraception, { foreignKey: 'curPregId' });
     CurrentPregnancy.hasMany(models.ANC, { foreignKey: 'curPregId' });
+    CurrentPregnancy.belongsTo(models.FatherProfile, { foreignKey: 'fatherId' });
     CurrentPregnancy.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
     CurrentPregnancy.hasMany(models.RiskEvaluation, { foreignKey: 'curPregId' });
     CurrentPregnancy.hasMany(models.BabyKicking, { foreignKey: 'curPregId' });

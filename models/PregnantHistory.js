@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
       },
       childStatus: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(['มีชีวิตอยู่', 'เสียชีวิตแล้ว', 'แท้ง']),
       },
     },
     {
@@ -34,8 +34,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   PregnantHistory.associate = (models) => {
-    PregnantHistory.belongsTo(models.Child, { foreignKey: 'childId' });
-    PregnantHistory.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
+    PregnantHistory.belongsTo(models.MotherProfile, { foreignKey: 'motherId', allowNull: false });
+    PregnantHistory.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
+    PregnantHistory.hasMany(models.Child, { foreignKey: 'pregHistoryId' });
   };
 
   return PregnantHistory;

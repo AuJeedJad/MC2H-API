@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   UltrasoundResult.associate = (models) => {
-    UltrasoundResult.belongsTo(models.ANC, { foreignKey: 'ancId' });
+    UltrasoundResult.belongsTo(models.ANC, { foreignKey: 'ancId', allowNull: false });
     UltrasoundResult.hasMany(models.UltrasoundImage, { foreignKey: 'usResultId' });
   };
 

@@ -5,19 +5,19 @@ module.exports = {
     return queryInterface.bulkInsert('hospitals', [
       {
         name: 'จุฬาลงกรณ์',
-        address: '123 ถ.พระราม4',
+        address: '1873 ถ.พระราม4',
         subDistrict: 'ปทุมวัน',
         district: 'ปทุมวัน',
         province: 'กทม.',
-        zipCode: '10400',
+        zipCode: '10330',
       },
       {
         name: 'ศิริราช',
-        address: '123 ถ.พรานนก',
-        subDistrict: 'บางกอก',
-        district: 'บางกอก',
+        address: '2 ถ.หวังหลัง',
+        subDistrict: 'ศิริราช',
+        district: 'บางกอกน้อย',
         province: 'กทม.',
-        zipCode: '10300',
+        zipCode: '10700',
       },
     ]);
   },

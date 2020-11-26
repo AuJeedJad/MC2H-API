@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   DentalExam.associate = (models) => {
+    DentalExam.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId', allowNull: false });
     DentalExam.hasMany(models.DentalAppointment, { foreignKey: 'dentalExamId' });
     DentalExam.hasOne(models.DentalCare, { foreignKey: 'dentalExamId' });
-    DentalExam.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId' });
   };
 
   return DentalExam;

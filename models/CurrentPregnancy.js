@@ -32,6 +32,36 @@ module.exports = (sequelize, DataTypes) => {
       complicationAfterBirth: {
         type: DataTypes.BOOLEAN,
       },
+      beforePregWeight: {
+        type: DataTypes.DOUBLE,
+      },
+      beforePregHeight: {
+        type: DataTypes.DOUBLE,
+      },
+      downsyndromeScreen: {
+        type: DataTypes.BOOLEAN,
+      },
+      amniocentesis: {
+        type: DataTypes.STRING,
+      },
+      riskEvaluate: {
+        type: DataTypes.ENUM(['Low', 'High']),
+      },
+      otherLabResult: {
+        type: DataTypes.STRING,
+      },
+      coupleCounselingDate1: {
+        type: DataTypes.DATEONLY,
+      },
+      coupleCounselingDate2: {
+        type: DataTypes.DATEONLY,
+      },
+      parentSchoolDate1: {
+        type: DataTypes.DATEONLY,
+      },
+      parentSchoolDate2: {
+        type: DataTypes.DATEONLY,
+      },
     },
     {
       tableName: 'current_pregnancies',
@@ -40,14 +70,16 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   CurrentPregnancy.associate = (models) => {
-    CurrentPregnancy.hasMany(models.Child, { foreignKey: 'curPregId' });
-    CurrentPregnancy.hasOne(models.Contraception, { foreignKey: 'curPregId' });
-    CurrentPregnancy.hasMany(models.ANC, { foreignKey: 'curPregId' });
     CurrentPregnancy.belongsTo(models.FatherProfile, { foreignKey: 'fatherId' });
-    CurrentPregnancy.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
+    CurrentPregnancy.belongsTo(models.MotherProfile, { foreignKey: 'motherId', allowNull: false });
+    CurrentPregnancy.hasOne(models.Contraception, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasOne(models.DentalExam, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasOne(models.PregnantHistory, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasOne(models.Vaccine, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasMany(models.ANC, { foreignKey: 'curPregId' });
+    CurrentPregnancy.hasMany(models.LabResult, { foreignKey: 'curPregId' });
     CurrentPregnancy.hasMany(models.RiskEvaluation, { foreignKey: 'curPregId' });
     CurrentPregnancy.hasMany(models.BabyKicking, { foreignKey: 'curPregId' });
-    CurrentPregnancy.hasOne(models.DentalExam, { foreignKey: 'curPregId' });
   };
 
   return CurrentPregnancy;

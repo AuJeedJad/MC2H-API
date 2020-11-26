@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   DrugAllergy.associate = (models) => {
-    DrugAllergy.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId' });
+    DrugAllergy.belongsTo(models.MotherMedicalHistory, { foreignKey: 'motherMedHistoryId', allowNull: false });
   };
 
   return DrugAllergy;

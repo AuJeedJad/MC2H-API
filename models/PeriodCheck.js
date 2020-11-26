@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
   PeriodCheck.associate = (models) => {
     PeriodCheck.belongsTo(models.ANC, { foreignKey: 'ancId' });
-    PeriodCheck.belongsTo(models.StaticPeriodCheck, { foreignKey: 'staticPeriodCheckId' });
+    PeriodCheck.belongsTo(models.StaticPeriodCheck, { foreignKey: 'staticPeriodCheckId', allowNull: false });
   };
 
   return PeriodCheck;

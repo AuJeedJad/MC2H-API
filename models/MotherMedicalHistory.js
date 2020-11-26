@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   MotherMedicalHistory.associate = (models) => {
-    MotherMedicalHistory.belongsTo(models.MotherProfile, { foreignKey: 'motherId' });
+    MotherMedicalHistory.belongsTo(models.MotherProfile, { foreignKey: 'motherId', allowNull: false });
     MotherMedicalHistory.hasOne(models.FamilyMedicalHistory, { foreignKey: 'motherMedHistoryId' });
     MotherMedicalHistory.hasMany(models.DrugAllergy, { foreignKey: 'motherMedHistoryId' });
     MotherMedicalHistory.hasMany(models.CesareanSection, { foreignKey: 'motherMedHistoryId' });

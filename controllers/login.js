@@ -2,7 +2,35 @@ const db = require('../models');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const login = async (req, res) => {
+const staffLogin = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username) {
+      return res.status(400).send({ message: 'Username not exist' });
+    }
+    if (!password) {
+      return res.status(400).send({ message: 'Password not exist' });
+    }
+    const targetUser = await db.Staff.findOne({ where: { username, isActive: true } });
+    if (!targetUser) {
+      res.status(400).send({ message: 'Incorrect username or password' });
+    } else {
+      const isCorrect = await bcryptjs.compareSync(password, targetUser.password);
+
+      if (!isCorrect) {
+        res.status(400).send({ message: 'Incorrect username or password' });
+      } else {
+        const payload = { id: targetUser.id, createAt: new Date(), role: 'staff' };
+        const token = jwt.sign(payload, process.env.SECRET, { expiresIn: 2592000 }); //token exp: 1 month
+        res.status(200).send({ token });
+      }
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+const motherLogin = async (req, res) => {
   try {
     const { idCard, password } = req.body;
     if (!idCard) {
@@ -34,4 +62,7 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login };
+module.exports = {
+  motherLogin,
+  staffLogin,
+};

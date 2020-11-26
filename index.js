@@ -6,12 +6,12 @@ const app = express();
 const cors = require('cors');
 const db = require('./models');
 const adminRoute = require('./routes/admin');
-const staffRoute = require('./routes/staff');
+const loginRoute = require('./routes/login');
+const motherAccountRoute = require('./routes/motherAccount');
 const motherProfileRoute = require('./routes/motherProfile');
 const staticRiskEvaluationRoute = require('./routes/staticRiskEvaluation');
 const riskEvaluationRoute = require('./routes/riskEvaluation');
 const dentalRoute = require('./routes/dental');
-const motherRoute = require('./routes/mother');
 const ancRoute = require('./routes/anc');
 
 app.use(cors());
@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.use('/admin/staff', adminRoute);
-app.use('/staff', staffRoute);
+app.use('/login', loginRoute);
+app.use('/staff/motherAccount', motherAccountRoute);
 app.use('/motherProfile', motherProfileRoute);
-app.use('/mother', motherRoute);
 app.use('/anc', ancRoute);
 app.use('/staticRiskEvaluation', staticRiskEvaluationRoute);
 app.use('/riskEvaluation', riskEvaluationRoute);

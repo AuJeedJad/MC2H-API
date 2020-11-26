@@ -1,10 +1,9 @@
 const passport = require('passport');
 const router = require('express').Router();
-const { login, motherRegister, createCurrentPregnancy } = require('../controllers/staff');
+const { motherRegister, createCurrentPregnancy } = require('../controllers/motherAccount');
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });
 
-router.post('/login', login);
 router.post('/motherRegister', authStaff, motherRegister);
 router.post('/createCurrentPregnancy', authStaff, createCurrentPregnancy);
 

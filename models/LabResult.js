@@ -42,4 +42,6 @@ module.exports = (sequelize, DataTypes) => {
   LabResult.associate = (models) => {
     LabResult.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId', allowNull: false });
   };
+
+  return LabResult;
 };

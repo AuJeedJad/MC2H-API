@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     'Vaccine',
     {
       tetanusCountBefore: {
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
       },
       lastTetanusHxDate: {
         type: DataTypes.DATEONLY,
@@ -40,4 +40,6 @@ module.exports = (sequelize, DataTypes) => {
   Vaccine.associate = (models) => {
     Vaccine.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId', allowNull: false });
   };
+
+  return Vaccine;
 };

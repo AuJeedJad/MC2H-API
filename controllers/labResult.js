@@ -1,4 +1,5 @@
 const db = require('../models');
+const { Op } = require('sequelize');
 
 const recordLabResult = async (req, res) => {
   try {
@@ -55,7 +56,9 @@ const recordLabResult = async (req, res) => {
       return res.status(400).send({ message: 'Please choose mother or father.' });
     }
 
-    const targetLabResultByCurPregId = await db.LebResult.fineOne({ where: { curPregId } });
+    const targetLabResultByCurPregId = await db.LebResult.fineOne({
+      where: { curPregId, inactiveDate: { [Op.gte]: new Date() } },
+    });
     if (!targetLabResultByCurPregId) {
       res.status(400).send({ message: 'Not found. Please check your curPregId.' });
     } else {

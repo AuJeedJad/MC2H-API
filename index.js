@@ -13,6 +13,7 @@ const staticRiskEvaluationRoute = require('./routes/staticRiskEvaluation');
 const riskEvaluationRoute = require('./routes/riskEvaluation');
 const dentalRoute = require('./routes/dental');
 const ancRoute = require('./routes/anc');
+const labResultRoute = require('./routes/labResult');
 
 app.use(cors());
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use('/anc', ancRoute);
 app.use('/staticRiskEvaluation', staticRiskEvaluationRoute);
 app.use('/riskEvaluation', riskEvaluationRoute);
 app.use('/dental', dentalRoute);
+app.use('/labResult', labResultRoute);
 
 app.use((req, res, next) => {
   res.status(404).send({ message: 'Not Found' });

@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { createVaccine } = require('../controllers/vaccine');
+const { recordVaccine } = require('../controllers/vaccine');
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });
 
-router.post('/', authStaff, createVaccine);
+router.post('/', authStaff, recordVaccine);
 
 module.exports = router;

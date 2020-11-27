@@ -54,9 +54,12 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   ANC.associate = (models) => {
-    ANC.belongsTo(models.CurrentPregnancy, { foreignKey: 'curPregId', allowNull: false });
-    ANC.belongsTo(models.Hospital, { foreignKey: 'checkHospitalId', allowNull: false });
-    ANC.belongsTo(models.Hospital, { foreignKey: 'nextHospitalId', allowNull: false });
+    ANC.belongsTo(models.CurrentPregnancy, {
+      foreignKey: { name: 'curPregId', allowNull: false },
+      onDelete: 'CASCADE',
+    });
+    ANC.belongsTo(models.Hospital, { foreignKey: { name: 'checkHospitalId', allowNull: false }, onDelete: 'CASCADE' });
+    ANC.belongsTo(models.Hospital, { foreignKey: { name: 'nextHospitalId', allowNull: false }, onDelete: 'CASCADE' });
     ANC.hasMany(models.UltrasoundResult, { foreignKey: 'ancId' });
     ANC.hasMany(models.PeriodCheck, { foreignKey: 'ancId' });
     ANC.hasMany(models.SpecialExamination, { foreignKey: 'ancId' });

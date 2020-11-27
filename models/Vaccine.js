@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'vaccines',
+      timestamps: false,
     }
   );
   Vaccine.associate = (models) => {

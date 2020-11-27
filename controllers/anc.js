@@ -1,47 +1,61 @@
 const db = require('../models');
+const { Op } = require('sequelize');
 
 const getAnc = async (req, res, next) => {
   try {
-    const appointmentDate = req.query.appointmentDate;
-    const checkHospitalId = req.query.checkHospitalId;
+    const { appointmentDate, checkHospitalId, idCard } = req.query;
 
-    let ANC = [];
+    let query = {
+      include: {
+        model: db.CurrentPregnancy,
+        required: true,
+        include: {
+          model: db.MotherProfile,
+          required: true,
+        },
+      },
+    };
 
-    if (appointmentDate && checkHospitalId) {
-      ANC = await db.ANC.findAll({
-        where: { appointmentDate, checkHospitalId },
-        include: [
-          {
-            model: db.CurrentPregnancy,
-            attributes: ['motherId'],
-            include: [
-              {
-                model: db.MotherProfile,
-                attributes: ['firstName', 'lastName'],
-              },
-            ],
-          },
-        ],
-        attributes: ['checkHospitalId'],
-      });
-    } else {
-      ANC = await db.ANC.findAll({
-        include: [
-          {
-            model: db.CurrentPregnancy,
-            attributes: ['motherId'],
-            include: [
-              {
-                model: db.MotherProfile,
-                attributes: ['firstName', 'lastName'],
-              },
-            ],
-          },
-        ],
-        attributes: ['examDate', 'appointmentDate', 'examBy'],
-      });
+    if (appointmentDate) {
+      query = { ...query, where: { ...query.where, appointmentDate } };
     }
-    res.status(200).send({ ANC });
+
+    // {
+    //   where: {
+    //     appointmentDate;
+    //   }
+    // }
+
+    if (checkHospitalId) {
+      query = { ...query, where: { ...query.where, checkHospitalId } };
+    }
+
+    // {
+    //   where: {
+    //     appointmentDate, checkHospitalId;
+    //   }
+    // }
+
+    if (idCard) {
+      query = {
+        ...query,
+        include: {
+          ...query.include,
+          include: {
+            ...query.include.include,
+            where: {
+              idCard: {
+                [Op.substring]: idCard,
+              },
+            },
+          },
+        },
+      };
+    }
+
+    const ANC = await db.ANC.findAll(query);
+
+    res.status(200).send({ ANC, count: ANC.length });
   } catch (err) {
     next(err);
   }

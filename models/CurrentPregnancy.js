@@ -1,4 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
+  const inactiveDate = new Date();
+  inactiveDate.setDate(inactiveDate.getDate() + 330);
+
   const CurrentPregnancy = sequelize.define(
     'CurrentPregnancy',
     {
@@ -61,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       parentSchoolDate2: {
         type: DataTypes.DATEONLY,
+      },
+      inactiveDate: {
+        type: DataTypes.DATEONLY,
+        defaultValue: inactiveDate,
       },
     },
     {

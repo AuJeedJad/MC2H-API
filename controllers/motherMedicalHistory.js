@@ -39,13 +39,14 @@ const getMedicalHistory = async (req, res, next) => {
 
 const getPregnantHistory = async (req, res, next) => {
   try {
-    const { motherId } = req.body;
+    const { motherId } = req.query;
     const pregnantHistory = await db.PregnantHistory.findAll({
       where: {
         motherId,
       },
       include: {
         model: db.MotherProfile,
+        attributes: ['id'],
       },
     });
     res.status(200).send(pregnantHistory);

@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       role: {
         type: DataTypes.ENUM(['mother', 'father']),
+        allowNull: false,
       },
     },
     {

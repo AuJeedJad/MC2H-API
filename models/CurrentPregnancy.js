@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       dataByLMP: {
         type: DataTypes.DATEONLY,
       },
-      dateBuPV: {
+      dateByPV: {
+        type: DataTypes.DATEONLY,
+      },
+      dateByUtSize: {
         type: DataTypes.DATEONLY,
       },
       correctedBy: {

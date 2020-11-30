@@ -20,7 +20,7 @@ const staffLogin = async (req, res) => {
       if (!isCorrect) {
         res.status(400).send({ message: 'Incorrect username or password' });
       } else {
-        const payload = { id: targetUser.id, createAt: new Date(), role: 'staff' };
+        const payload = { id: targetUser.id, hospitalId: targetUser.hospitalId, createAt: new Date(), role: 'staff' };
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: 2592000 }); //token exp: 1 month
         res.status(200).send({ token });
       }

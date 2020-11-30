@@ -18,12 +18,55 @@ const motherFind = async (req, res, next) => {
       res.status(404).send({ message: 'เลขประจำตัวประชาชนนี้ยังไม่เคยลงทะเบียน' });
     } else {
       let isActive = false;
+      let curPregId = '';
+      let GA = 0;
+      let isTerminate = false;
+      let EDD;
       if (targetIdCard.isActive === true) {
         const targetCurPreg = await db.CurrentPregnancy.findOne({
           where: { motherId: targetIdCard.id, inactiveDate: { [Op.gte]: new Date() } },
         });
         if (targetCurPreg) {
           isActive = targetCurPreg.inactiveDate;
+          curPregId = targetCurPreg.id;
+          isTerminate = targetCurPreg.giveBirthAt ? true : false;
+          if (targetCurPreg.correctedBy) {
+            EDD =
+              targetCurPreg.correctedBy === 'LMP'
+                ? targetCurPreg.dateByLMP
+                : targetCurPreg.correctedBy === 'U/S'
+                ? targetCurPreg.dateByUltrasound
+                : targetCurPreg.correctedBy === 'PV'
+                ? targetCurPreg.dateByPV
+                : targetCurPreg.dateByUtSize;
+          } else {
+            const targetContra = await db.Contraception.findOne({ where: { curPregId: targetCurPreg.id } });
+            if (targetContra && targetContra.isRegularMensPeriod && targetCurPreg.dateByLMP) {
+              EDD = targetCurPreg.dateByLMP;
+            } else if (
+              targetCurPreg.dateByUtSize ||
+              targetCurPreg.dateByPV ||
+              targetCurPreg.dateByUltrasound ||
+              targetCurPreg.dateByLMP
+            ) {
+              EDD = targetCurPreg.dateByUltrasound
+                ? targetCurPreg.dateByUltrasound
+                : targetCurPreg.dateByLMP
+                ? targetCurPreg.dateByLMP
+                : targetCurPreg.dateByUtSize
+                ? targetCurPreg.dateByUtSize
+                : targetCurPreg.dateByPV;
+            } else {
+              EDD = false;
+            }
+          }
+
+          if (EDD) {
+            const countDownDate = Math.ceil((new Date(EDD).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24);
+            GA = (280 - countDownDate) / 7;
+          } else {
+            GA = 0;
+          }
         } else {
           targetIdCard.isActive = false;
           targetIdCard.save();
@@ -34,7 +77,10 @@ const motherFind = async (req, res, next) => {
         firstName: targetIdCard.firstName,
         lastName: targetIdCard.lastName,
         isActive: isActive,
+        curPregId,
         createdAt: targetIdCard.createdAt,
+        GA,
+        isTerminate,
       });
     }
   } catch (err) {
@@ -100,14 +146,12 @@ const createCurrentPregnancy = async (req, res) => {
     const { id } = req.body;
 
     const targetMotherProfile = await db.MotherProfile.findOne({ where: { id } });
-    if (targetMotherProfile) {
-      return res.status(400).send({ message: 'Previous pregnancy still' });
+    if (!targetMotherProfile) {
+      return res.status(404).send({ message: 'ไม่พบ motherProfile ID ในฐานข้อมูล' });
     }
 
-    console.log(targetIdCard.isActive);
-    // const newCurrentPregnancy = await db.CurrentPregnancy.create({ motherId: targetIdCard.id });
-
-    res.status(201).send(newCurrentPregnancy);
+    const newCurrentPregnancy = await db.CurrentPregnancy.create({ motherId: targetMotherProfile.id });
+    res.status(201).send({ message: 'สร้างครรภ์ใหม่เรียบร้อยแล้ว' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

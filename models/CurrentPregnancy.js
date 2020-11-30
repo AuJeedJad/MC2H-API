@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       dateByUltrasound: {
         type: DataTypes.DATEONLY,
       },
-      dataByLMP: {
+      dateByLMP: {
         type: DataTypes.DATEONLY,
       },
       dateByPV: {

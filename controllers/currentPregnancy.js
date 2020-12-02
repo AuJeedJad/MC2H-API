@@ -14,7 +14,7 @@ const updateNote = async (req, res, next) => {
         },
       }
     );
-    res.status(200).send('updated');
+    res.status(200).send({ message: 'updated successful' });
   } catch (err) {
     next(err);
   }

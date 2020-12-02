@@ -4,7 +4,7 @@ const { getMedicalHistory, getPregnantHistory } = require('../controllers/mother
 
 const authMother = passport.authenticate('jwt-mother', { session: false });
 
-router.get('/', authMother, getMedicalHistory);
+router.get('/medicalHistory', authMother, getMedicalHistory);
 router.get('/pregnantHistory', authMother, getPregnantHistory);
 
 module.exports = router;

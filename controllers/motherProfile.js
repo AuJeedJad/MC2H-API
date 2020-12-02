@@ -12,7 +12,6 @@ const getMotherProfile = async (req, res, next) => {
             [Op.substring]: idCard,
           },
         },
-        // attributes: ['idCard']
       });
     } else {
       motherProfiles = await db.MotherProfile.findAll({});

@@ -11,7 +11,7 @@ const recordLabResult = async (req, res) => {
       where: { id: curPregId, inactiveDate: { [Op.gte]: new Date() } },
     });
     if (!targetCurPreg) {
-      return res.status(400).send({ message: '' });
+      return res.status(400).send({ message: 'Not Found' });
     }
 
     const {

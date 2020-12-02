@@ -57,9 +57,9 @@ const getAnc = async (req, res, next) => {
       };
     }
 
-    const ANC = await db.ANC.findAll(query);
+    const ancs = await db.ANC.findAll(query);
 
-    res.status(200).send({ ANC, count: ANC.length });
+    res.status(200).send({ ancs, count: ancs.length });
   } catch (err) {
     next(err);
   }

@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 
 const getAnc = async (req, res, next) => {
   try {
-    const { appointmentDate, checkHospitalId, idCard } = req.query;
+    const { appointmentDate, checkHospitalId, idCard, curPregId } = req.query;
 
     let query = {
       include: {
@@ -35,6 +35,10 @@ const getAnc = async (req, res, next) => {
     //     appointmentDate, checkHospitalId;
     //   }
     // }
+
+    if (curPregId) {
+      query = { ...query, where: { ...query.where, curPregId } };
+    }
 
     if (idCard) {
       query = {

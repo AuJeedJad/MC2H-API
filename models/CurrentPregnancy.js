@@ -72,6 +72,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         defaultValue: inactiveDate,
       },
+      note: {
+        type: DataTypes.TEXT,
+      },
     },
     {
       tableName: 'current_pregnancies',

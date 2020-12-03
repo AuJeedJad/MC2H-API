@@ -1,22 +1,61 @@
 const db = require('../models');
-const { Op } = require('sequelize');
+
 const getMotherProfile = async (req, res, next) => {
   try {
-    const idCard = req.query.idCard;
-    let motherProfiles = [];
+    const { id } = req.query;
+    let motherProfiles;
 
-    if (idCard) {
-      motherProfiles = await db.MotherProfile.findAll({
+    if (id) {
+      motherProfiles = await db.MotherProfile.findOne({
         where: {
-          idCard: {
-            [Op.substring]: idCard,
-          },
+          id,
         },
+        include: [
+          {
+            model: db.MotherAddress,
+          },
+        ],
       });
     } else {
-      motherProfiles = await db.MotherProfile.findAll({});
+      return res.status(404).send({ message: 'id not found!' });
     }
-    res.status(200).send({ motherProfiles });
+    return res.status(200).send(motherProfiles);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateMotherProfile = async (req, res, next) => {
+  try {
+    const {
+      id,
+      firstName,
+      lastName,
+      birthDate,
+      email,
+      phoneNumber,
+      address,
+      subDistrict,
+      district,
+      province,
+      zipCode,
+    } = req.body;
+
+    const targetMother = await db.MotherProfile.findOne({ where: id });
+    if (!targetMother) {
+      return res.status(400).send({ message: 'ไม่มีผู้ใช้ในระบบ' });
+    } else {
+      await targetMother.update({ firstName, lastName, birthDate, email, phoneNumber });
+    }
+
+    const targetAddress = await db.MotherAddress.findOne({ where: targetMother.id });
+    if (!targetAddress) {
+      return res.status(400).send({ message: 'ไม่มีข้อมูลที่อยู่' });
+    } else {
+      await targetAddress.update({ address, subDistrict, district, province, zipCode });
+    }
+
+    return res.status(200).send({ mother: targetMother, address: targetAddress });
   } catch (err) {
     next(err);
   }
@@ -24,4 +63,5 @@ const getMotherProfile = async (req, res, next) => {
 
 module.exports = {
   getMotherProfile,
+  updateMotherProfile,
 };

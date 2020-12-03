@@ -7,10 +7,10 @@ const recordLabResult = async (req, res) => {
     if (!curPregId) {
       return res.status(400).send({ message: 'Please check curPregId.' });
     }
-    const targetCerPreg = await db.CurrentPregnancy.findOne({
+    const targetCurPreg = await db.CurrentPregnancy.findOne({
       where: { id: curPregId, inactiveDate: { [Op.gte]: new Date() } },
     });
-    if (!targetCerPreg) {
+    if (!targetCurPreg) {
       return res.status(400).send({ message: '' });
     }
 

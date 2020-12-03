@@ -27,6 +27,7 @@ const motherFind = async (req, res, next) => {
           where: { motherId: targetIdCard.id, inactiveDate: { [Op.gte]: new Date() } },
         });
         if (targetCurPreg) {
+          createdAt = targetCurPreg.createdAt;
           isActive = targetCurPreg.inactiveDate;
           curPregId = targetCurPreg.id;
           isTerminate = targetCurPreg.giveBirthAt ? true : false;
@@ -78,7 +79,7 @@ const motherFind = async (req, res, next) => {
         lastName: targetIdCard.lastName,
         isActive: isActive,
         curPregId,
-        createdAt: targetIdCard.createdAt,
+        createdAt,
         GA,
         isTerminate,
       });

@@ -1,5 +1,4 @@
 const db = require('../models');
-<<<<<<< HEAD
 const { Op } = require('sequelize');
 
 const recordWeightAndHeightOfMother = async (req, res) => {
@@ -87,7 +86,6 @@ const recordParentSchool = async (req, res) => {
 };
 
 module.exports = { recordWeightAndHeightOfMother, recordDownsyndrome, recordCoupleCounsel, recordParentSchool };
-=======
 
 const updateNote = async (req, res, next) => {
   try {
@@ -144,4 +142,3 @@ module.exports = {
   getCurrentPregnancy,
   // getCurrentPregnancy1,
 };
->>>>>>> dev

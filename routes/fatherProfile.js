@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-const { findFather } = require('../controllers/fatherProfile');
+const { getFather, updateFather } = require('../controllers/fatherProfile');
 
 const authMother = passport.authenticate('jwt-mother', { session: false });
 
-router.get('/', authMother, findFather);
+router.get('/', authMother, getFather);
+router.post('/', authMother, updateFather);
 
 module.exports = router;

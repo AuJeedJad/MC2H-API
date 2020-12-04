@@ -50,7 +50,15 @@ const updateMotherProfile = async (req, res, next) => {
 
     const targetAddress = await db.MotherAddress.findOne({ where: targetMother.id });
     if (!targetAddress) {
-      return res.status(400).send({ message: 'ไม่มีข้อมูลที่อยู่' });
+      const newAddress = await db.MotherAddress.create({
+        address,
+        subDistrict,
+        district,
+        province,
+        zipCode,
+        motherId: targetMother.id,
+      });
+      return res.status(201).send(newAddress);
     } else {
       await targetAddress.update({ address, subDistrict, district, province, zipCode });
     }

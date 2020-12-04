@@ -1,6 +1,8 @@
 require('dotenv').config();
 require('./middleware/passport');
 
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -26,6 +28,14 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'upload');
+  },
+  filename: (req, file, cb) => {
+    cb(null);
+  },
+});
 
 app.use('/admin/staff', adminRoute);
 app.use('/login', loginRoute);

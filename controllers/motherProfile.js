@@ -16,10 +16,10 @@ const getMotherProfile = async (req, res, next) => {
           },
         ],
       });
+      return res.status(200).send(motherProfiles);
     } else {
       return res.status(404).send({ message: 'id not found!' });
     }
-    return res.status(200).send(motherProfiles);
   } catch (err) {
     next(err);
   }
@@ -35,6 +35,7 @@ const updateMotherProfile = async (req, res, next) => {
       email,
       phoneNumber,
       address,
+      road,
       subDistrict,
       district,
       province,
@@ -49,9 +50,11 @@ const updateMotherProfile = async (req, res, next) => {
     }
 
     const targetAddress = await db.MotherAddress.findOne({ where: targetMother.id });
+    console.log(targetMother.id);
     if (!targetAddress) {
       const newAddress = await db.MotherAddress.create({
         address,
+        road,
         subDistrict,
         district,
         province,
@@ -60,7 +63,7 @@ const updateMotherProfile = async (req, res, next) => {
       });
       return res.status(201).send(newAddress);
     } else {
-      await targetAddress.update({ address, subDistrict, district, province, zipCode });
+      await targetAddress.update({ address, road, subDistrict, district, province, zipCode });
     }
 
     return res.status(200).send({ mother: targetMother, address: targetAddress });

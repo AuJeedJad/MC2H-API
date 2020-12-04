@@ -5,6 +5,6 @@ const { getMotherProfile, updateMotherProfile } = require('../controllers/mother
 const authMother = passport.authenticate('jwt-mother', { session: false });
 
 router.get('/', authMother, getMotherProfile);
-router.put('/', authMother, updateMotherProfile);
+router.post('/', authMother, updateMotherProfile);
 
 module.exports = router;

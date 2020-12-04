@@ -19,6 +19,7 @@ const dentalRoute = require('./routes/dental');
 const ancRoute = require('./routes/anc');
 const labResultRoute = require('./routes/labResult');
 const vaccineRoute = require('./routes/vaccine');
+const currentPregnancyRoute = require('./routes/currentPregnancy');
 const postnatalRoute = require('./routes/postnatal');
 
 const app = express();
@@ -48,6 +49,7 @@ app.use('/riskEvaluation', riskEvaluationRoute);
 app.use('/dental', dentalRoute);
 app.use('/labResult', labResultRoute);
 app.use('/vaccine', vaccineRoute);
+app.use('/currentPregnancy', currentPregnancyRoute);
 app.use('/postnatal', postnatalRoute);
 
 app.use((req, res, next) => {

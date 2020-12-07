@@ -1,8 +1,6 @@
 require('dotenv').config();
 require('./middleware/passport');
 
-const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -21,6 +19,7 @@ const labResultRoute = require('./routes/labResult');
 const vaccineRoute = require('./routes/vaccine');
 const currentPregnancyRoute = require('./routes/currentPregnancy');
 const postnatalRoute = require('./routes/postnatal');
+const ultrasoundRoute = require('./routes/ultrasoundRoute');
 
 const app = express();
 
@@ -29,14 +28,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'upload');
-  },
-  filename: (req, file, cb) => {
-    cb(null);
-  },
-});
 
 app.use('/admin/staff', adminRoute);
 app.use('/login', loginRoute);
@@ -51,6 +42,7 @@ app.use('/labResult', labResultRoute);
 app.use('/vaccine', vaccineRoute);
 app.use('/currentPregnancy', currentPregnancyRoute);
 app.use('/postnatal', postnatalRoute);
+app.use('/ultrasound', ultrasoundRoute);
 
 app.use((req, res, next) => {
   res.status(404).send({ message: 'path not found on this server' });

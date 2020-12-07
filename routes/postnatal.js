@@ -1,6 +1,9 @@
 const router = require('express').Router();
-const { fastTerminate } = require('../controllers/postnatal');
+const passport = require('passport');
+const { fastTerminate, terminate } = require('../controllers/postnatal');
 
-router.patch('/fastTerminate', fastTerminate);
+const authStaff = passport.authenticate('jwt-staff', { session: false });
+router.patch('/fastTerminate', authStaff, fastTerminate);
+router.post('/fastTerminate', authStaff, terminate);
 
 module.exports = router;

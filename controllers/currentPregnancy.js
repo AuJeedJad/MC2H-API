@@ -85,8 +85,6 @@ const recordParentSchool = async (req, res) => {
   }
 };
 
-module.exports = { recordWeightAndHeightOfMother, recordDownsyndrome, recordCoupleCounsel, recordParentSchool };
-
 const updateNote = async (req, res, next) => {
   try {
     const { note } = req.body;
@@ -138,6 +136,10 @@ const getCurrentPregnancy = async (req, res, next) => {
 // };
 
 module.exports = {
+  recordWeightAndHeightOfMother,
+  recordDownsyndrome,
+  recordCoupleCounsel,
+  recordParentSchool,
   updateNote,
   getCurrentPregnancy,
   // getCurrentPregnancy1,

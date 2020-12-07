@@ -16,7 +16,13 @@ const createStaticRiskEvaluation = async (req, res, next) => {
 
 const getAllCheckLists = async (req, res, next) => {
   try {
-    const allCheckLists = await db.StaticRiskEvaluation.findAll();
+    const { type } = req.query;
+    let allCheckList = [];
+    if (type) {
+      allCheckLists = await db.StaticRiskEvaluation.findAll({ where: { type: type } });
+    } else {
+      allCheckLists = await db.StaticRiskEvaluation.findAll();
+    }
     res.status(200).send(allCheckLists);
   } catch (err) {
     next(err);

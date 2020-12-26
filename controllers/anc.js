@@ -65,6 +65,45 @@ const getAnc = async (req, res, next) => {
   }
 };
 
+const createAnc = async (req, res, next) => {
+  try {
+    const { idCard, checkHospitalId } = req.body;
+
+    if (!idCard) return res.status(400).send({ message: 'Id card is required' });
+    if (!checkHospitalId) return res.status(400).send({ message: 'Check hospital id is required' });
+
+    const motherProfile = await db.MotherProfile.findOne({
+      where: {
+        idCard,
+      },
+    });
+
+    if (!motherProfile) return res.status(400).send({ message: 'Mother not found' });
+
+    const activeCurrentPregnancy = await db.CurrentPregnancy.findOne({
+      where: {
+        motherId: motherProfile.id,
+        inactiveDate: { [Op.gte]: new Date() },
+      },
+    });
+
+    if (!activeCurrentPregnancy) return res.status(400).send({ message: 'None active current pregnancy' });
+
+    const anc = await db.ANC.create({
+      appointmentDate: new Date(),
+      examDate: new Date(),
+      curPregId: activeCurrentPregnancy.id,
+      checkHospitalId,
+      nextHospitalId: checkHospitalId,
+    });
+
+    if (activeCurrentPregnancy) res.status(201).send({ message: 'Anc is created', anc, motherProfile });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAnc,
+  createAnc,
 };

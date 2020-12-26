@@ -5,10 +5,10 @@ const getMotherReport = async (req, res, next) => {
     const { id } = req.params;
 
     if (!id) {
-      return res.status(200).send({ message: 'Current Pregnancy Id not exist' });
+      return res.status(400).send({ message: 'Current Pregnancy Id not exist' });
     }
 
-    const targetPreg = await db.CurrentPregnancy.findOne({
+    const targetCurPreg = await db.CurrentPregnancy.findOne({
       where: { id },
       attributes: [
         'correctedBy',
@@ -16,6 +16,9 @@ const getMotherReport = async (req, res, next) => {
         'dateByUltrasound',
         'dateByPV',
         'dateByUtSize',
+        'UsAtGA',
+        'PvAtGA',
+        'UtAtGA',
         'note',
         'beforePregWeight',
       ],
@@ -36,7 +39,16 @@ const getMotherReport = async (req, res, next) => {
       },
     });
 
-    return res.status(200).send(targetPreg);
+    if (!targetCurPreg) {
+      return res.status(404).send({ message: 'Current Pregnancy Id not found' });
+    }
+
+    let lastANC;
+    if (targetCurPreg.ANCs.length) {
+      lastANC = targetCurPreg.ANCs[targetCurPreg.ANCs.length - 1];
+    }
+
+    return res.status(200).send({ targetCurPreg, lastANC });
   } catch (err) {
     next(err);
   }

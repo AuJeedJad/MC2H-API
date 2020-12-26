@@ -17,6 +17,12 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        motherId: '3',
+        inactiveDate: new Date('2021-05-11'),
+        createdAt: new Date('2020-05-11'),
+        updatedAt: new Date('2020-05-11'),
+      },
     ]);
   },
   down: (queryInterface, Sequelize) => {

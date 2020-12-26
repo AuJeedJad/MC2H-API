@@ -6,7 +6,7 @@ exports.addImages = (req, res, next) => {
   console.log(req.body.usResultId);
   const usResultId = JSON.parse(req.body.value);
   const files = req.files;
-
+  console.log(files);
   files.forEach((item) => {
     cloudinary.uploader.upload(item.path, async (error, image) => {
       if (error) throw error;

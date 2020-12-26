@@ -24,6 +24,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        firstName: 'ชื่อหญิงตั้งครรภ์',
+        lastName: 'นามสกุลหญิงตั้งครรภ์',
+        idCard: '1111111111111',
+        password: bcryptjs.hashSync('1111111111111', salt),
+        phoneNumber: '0111111111',
+        createdAt: new Date('2020-05-11'),
+        updatedAt: new Date('2020-05-11'),
+      },
     ]);
   },
   down: (queryInterface, Sequelize) => {

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       uterusSize: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       childPosture: {
         type: DataTypes.STRING,

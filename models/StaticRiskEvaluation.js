@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       type: {
-        type: DataTypes.ENUM(['History', 'Present', 'Medicine']),
+        type: DataTypes.ENUM(['history', 'present', 'medicine']),
       },
     },
     {

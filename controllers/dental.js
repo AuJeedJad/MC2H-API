@@ -3,21 +3,17 @@ const db = require('../models');
 const DentalCare = async (req, res, next) => {
   try {
     const { dental, dentalExamId } = req.body;
-    let resultCare = [];
-    for (i = 0; i < dental.length; i++) {
-      resultCare.push({
-        dentalExamId: dentalExamId,
-        isMouthCare: dental[i].isMouthCare,
-        isBrushPractice: dental[i].isBrushPractice,
-        isDryedBrush: dental[i].isDryedBrush,
-        isFloss: dental[i].isFloss,
-        other: dental[i].other,
-      });
-    }
+    let resultCare = {
+      dentalExamId: dentalExamId,
+      isMouthCare: dental.isMouthCare,
+      isBrushPractice: dental.isBrushPractice,
+      isDryedBrush: dental.isDryedBrush,
+      isFloss: dental.isFloss,
+      other: dental.other,
+    };
+    const newDental = await db.DentalCare.create(resultCare);
 
-    const newDental = await db.DentalCare.bulkCreate(resultCare);
-
-    res.status(200).send({ message: 'createDentalCare is completed' });
+    res.status(200).send({ message: 'createDentalCare is completed', newDental });
   } catch (err) {
     next(err);
   }
@@ -38,7 +34,7 @@ const DentalAppointment = async (req, res, next) => {
 
     const newDentalAppointment = await db.DentalAppointment.bulkCreate(resultAppointment);
 
-    res.status(200).send({ message: 'createDentalAppointment is completed' });
+    res.status(200).send({ message: 'createDentalAppointment is completed', newDentalAppointment });
   } catch (err) {
     next(err);
   }
@@ -47,21 +43,17 @@ const DentalAppointment = async (req, res, next) => {
 const DentalExam = async (req, res, next) => {
   try {
     const { dentalCheck, curPregId } = req.body;
-    let resultExam = [];
-    for (i = 0; i < dentalCheck.length; i++) {
-      resultExam.push({
-        curPregId: curPregId,
-        toothDecay: dentalCheck[i].toothDecay,
-        calculus: dentalCheck[i].calculus,
-        gingivitis: dentalCheck[i].gingivitis,
-        other: dentalCheck[i].other,
-        examBy: dentalCheck[i].examBy,
-      });
-    }
+    let resultExam = {
+      curPregId: curPregId,
+      toothDecay: dentalCheck.toothDecay,
+      calculus: dentalCheck.calculus,
+      gingivitis: dentalCheck.gingivitis,
+      other: dentalCheck.other,
+      examBy: dentalCheck.examBy,
+    };
+    const newDentalCheck = await db.DentalExam.create(resultExam);
 
-    const newDentalCheck = await db.DentalExam.bulkCreate(resultExam);
-
-    res.status(200).send({ message: 'createDentalExam is completed' });
+    res.status(200).send({ message: 'createDentalExam is completed', newDentalCheck });
   } catch (err) {
     next(err);
   }

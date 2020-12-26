@@ -4,24 +4,27 @@ module.exports = (sequelize, DataTypes) => {
     {
       address: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+      },
+      road: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       subDistrict: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       district: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
       },
       province: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       zipCode: {
         type: DataTypes.STRING(5),
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
@@ -31,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   MotherAddress.associate = (models) => {
-    MotherAddress.belongsTo(models.MotherProfile, { foreignKey: 'motherId', allowNull: false });
+    MotherAddress.belongsTo(models.MotherProfile, { foreignKey: 'motherId', allowNull: true });
   };
 
   return MotherAddress;

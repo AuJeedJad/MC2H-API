@@ -2,19 +2,19 @@ const db = require('../models');
 
 const getMedicalHistory = async (req, res, next) => {
   try {
-    const { motherId } = req.body;
+    const { motherId } = req.query;
     const allData = await db.MotherMedicalHistory.findOne({
       where: {
         motherId,
       },
       include: [
         {
-          model: db.DrugAllergy,
-          attributes: ['id', 'drugName', 'symptom'],
-        },
-        {
           model: db.CesareanSection,
           attributes: ['id', 'year', 'hospital'],
+        },
+        {
+          model: db.DrugAllergy,
+          attributes: ['id', 'drugName', 'symptom'],
         },
         {
           model: db.FamilyMedicalHistory,

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       idCard: {
-        type: DataTypes.INTEGER(13),
+        type: DataTypes.STRING(13),
       },
       birthDate: {
         type: DataTypes.DATEONLY,
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       phoneNumber: {
-        type: DataTypes.INTEGER(10),
+        type: DataTypes.STRING(10),
       },
     },
     {

@@ -3,12 +3,13 @@ const db = require('../models');
 const createRiskEvaluation = async (req, res, next) => {
   try {
     const { history, curPregId, examBy, present, medicine } = req.body;
+
     let result = [];
     for (let i = 0; i < history.length; i++) {
       result.push({
         staticRiskEvaId: history[i].id,
         curPregId: curPregId,
-        isCheck: history[i].isCheck,
+        isCheck: !!+history[i].isCheck,
         examBy: examBy,
         date: new Date(),
       });
@@ -19,7 +20,7 @@ const createRiskEvaluation = async (req, res, next) => {
         result.push({
           staticRiskEvaId: present[i][j].id,
           curPregId: curPregId,
-          isCheck: present[i][j].isCheck,
+          isCheck: !!+present[i][j].isCheck,
           examBy: examBy,
           date: new Date(),
         });
@@ -31,7 +32,7 @@ const createRiskEvaluation = async (req, res, next) => {
         result.push({
           staticRiskEvaId: medicine[i][j].id,
           curPregId: curPregId,
-          isCheck: medicine[i][j].isCheck,
+          isCheck: !!+medicine[i][j].isCheck,
           examBy: examBy,
           date: new Date(),
         });

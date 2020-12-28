@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       nippleExam: {
         type: DataTypes.ENUM('ปรกติ', 'สั้น', 'บุ๋ม', 'บอด'),
       },
+      isChecked: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       tableName: 'ancs',

@@ -45,7 +45,7 @@ const getMotherReport = async (req, res, next) => {
 
     let lastANC;
     if (targetCurPreg.ANCs.length) {
-      lastANC = targetCurPreg.ANCs[targetCurPreg.ANCs.length - 1];
+      lastANC = targetCurPreg.ANCs[targetCurPreg.ANCs.length - 2];
     }
 
     return res.status(200).send({ targetCurPreg, lastANC });

@@ -22,33 +22,30 @@ const getMotherReport = async (req, res, next) => {
         'note',
         'beforePregWeight',
       ],
-      include: {
-        model: db.ANC,
-        attributes: [
-          'urineTest',
-          'bloodPressure',
-          'childPosture',
-          'uterusSize',
-          'heartSound',
-          'childMove',
-          'gaByLmp',
-          'gaByUs',
-          'physicalExamination',
-          'examDate',
-        ],
-      },
     });
 
     if (!targetCurPreg) {
       return res.status(404).send({ message: 'Current Pregnancy Id not found' });
     }
 
-    let lastANC;
-    if (targetCurPreg.ANCs.length) {
-      lastANC = targetCurPreg.ANCs[targetCurPreg.ANCs.length - 2];
-    }
+    const targetANC = await db.ANC.findOne({
+      where: { isChecked: true },
+      order: [['examDate', 'DESC']],
+      attributes: [
+        'urineTest',
+        'bloodPressure',
+        'childPosture',
+        'uterusSize',
+        'heartSound',
+        'childMove',
+        'gaByLmp',
+        'gaByUs',
+        'physicalExamination',
+        'examDate',
+      ],
+    });
 
-    return res.status(200).send({ targetCurPreg, lastANC });
+    return res.status(200).send({ targetCurPreg, lastANC: targetANC });
   } catch (err) {
     next(err);
   }

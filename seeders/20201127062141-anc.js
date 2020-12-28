@@ -23,6 +23,7 @@ module.exports = {
         examBy: 'Wow',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '2',
@@ -44,6 +45,7 @@ module.exports = {
         examBy: 'Wow',
         nutritionEvaResult: 'การรักษาเพิ่มเติม',
         nippleExam: 'สั้น',
+        isChecked: true,
       },
       {
         curPregId: '1',
@@ -65,6 +67,7 @@ module.exports = {
         examBy: 'Wow',
         nutritionEvaResult: 'ภาวะเครียด',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '2',
@@ -86,6 +89,7 @@ module.exports = {
         examBy: 'Wow',
         nutritionEvaResult: 'ภาวะเครียด',
         nippleExam: 'สั้น',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -103,6 +107,7 @@ module.exports = {
         lastEdit: new Date('2020-05-11'),
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -120,6 +125,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -137,6 +143,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -154,6 +161,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -172,6 +180,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -190,6 +199,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -209,6 +219,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
       {
         curPregId: '3',
@@ -228,6 +239,7 @@ module.exports = {
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
         nutritionEvaResult: 'ปรกติ',
         nippleExam: 'ปรกติ',
+        isChecked: true,
       },
     ]);
   },

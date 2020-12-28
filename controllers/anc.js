@@ -1,5 +1,5 @@
 const db = require('../models');
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 
 const getAnc = async (req, res, next) => {
   try {
@@ -103,7 +103,30 @@ const createAnc = async (req, res, next) => {
   }
 };
 
+const updateAnc = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const anc = await db.ANC.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!anc) {
+      return res.status(400).send({ message: 'ANC Not found' });
+    }
+    await db.ANC.update(req.body, {
+      where: {
+        id,
+      },
+    });
+    return res.status(200).send({ message: 'ANC update' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAnc,
   createAnc,
+  updateAnc,
 };

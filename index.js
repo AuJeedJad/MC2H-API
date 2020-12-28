@@ -24,6 +24,7 @@ const postnatalRoute = require('./routes/postnatal');
 const ultrasoundResultRoute = require('./routes/ultrasoundResult');
 const ultrasoundRoute = require('./routes/ultrasoundRoute');
 const motherReportRoute = require('./routes/motherReport');
+const specialExaminationRoute = require('./routes/specialExamination');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use('/postnatal', postnatalRoute);
 app.use('/ultrasoundResult', ultrasoundResultRoute);
 app.use('/ultrasound', ultrasoundRoute);
 app.use('/motherReport', motherReportRoute);
+app.use('/specialExamination', specialExaminationRoute);
 
 app.use((req, res, next) => {
   res.status(404).send({ message: 'path not found on this server' });

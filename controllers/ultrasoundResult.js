@@ -25,7 +25,6 @@ const getCorrectUltrasoundResult = async (req, res, next) => {
         ancId: ancIds,
       },
     });
-
     const ultrasoundResult = ultrasoundResults.filter((ur) => ur.isCorrect);
 
     res.status(200).send({ ultrasoundResult: ultrasoundResult.length > 0 ? ultrasoundResult[0] : {} });

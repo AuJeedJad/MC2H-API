@@ -17,7 +17,7 @@ module.exports = {
         childMove: '4',
         gaByLmp: '20',
         gaByUs: '5',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-11-27'),
         lastEdit: new Date(),
         examBy: 'Wow',
@@ -39,7 +39,7 @@ module.exports = {
         childMove: '4',
         gaByLmp: '20',
         gaByUs: '4',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-11-28'),
         lastEdit: new Date(),
         examBy: 'Wow',
@@ -61,7 +61,7 @@ module.exports = {
         childMove: '4',
         gaByLmp: '20',
         gaByUs: '6',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-11-27'),
         lastEdit: new Date(),
         examBy: 'Wow',
@@ -83,7 +83,7 @@ module.exports = {
         childMove: '4',
         gaByLmp: '20',
         gaByUs: '8',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-11-27'),
         lastEdit: new Date(),
         examBy: 'Wow',
@@ -100,7 +100,7 @@ module.exports = {
         urineTest: 'Normal',
         bloodPressure: '120/80',
         gaByLmp: '2',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-07-06'),
         examDate: new Date('2020-05-11'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -119,7 +119,7 @@ module.exports = {
         bloodPressure: '122/80',
         gaByLmp: '10',
         heartSound: '160',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-08-03'),
         lastEdit: new Date('2020-07-06'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -137,7 +137,7 @@ module.exports = {
         bloodPressure: '125/82',
         gaByLmp: '14',
         heartSound: '155',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-08-31'),
         lastEdit: new Date('2020-08-03'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -155,7 +155,7 @@ module.exports = {
         bloodPressure: '122/80',
         gaByLmp: '18',
         heartSound: '145',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-09-28'),
         lastEdit: new Date('2020-08-31'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -174,7 +174,7 @@ module.exports = {
         gaByLmp: '22',
         uterusSize: '20',
         heartSound: '140',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-10-26'),
         lastEdit: new Date('2020-09-28'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -193,7 +193,7 @@ module.exports = {
         gaByLmp: '26',
         uterusSize: '25',
         heartSound: '138',
-        physicalExamination: 'normal',
+
         appointmentDate: new Date('2020-11-23'),
         lastEdit: new Date('2020-10-26'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',
@@ -213,7 +213,7 @@ module.exports = {
         uterusSize: '30',
         heartSound: '140',
         childMove: '4',
-        physicalExamination: 'normal',
+        physicalExamination: 'twin',
         appointmentDate: new Date('2020-12-21'),
         lastEdit: new Date('2020-11-23'),
         examBy: 'ชื่อแพทย์ผู้ตรวจ',

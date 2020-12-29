@@ -1,4 +1,5 @@
 const db = require('../models');
+const bcryptjs = require('bcryptjs');
 
 const getMotherProfile = async (req, res, next) => {
   try {
@@ -72,7 +73,25 @@ const updateMotherProfile = async (req, res, next) => {
   }
 };
 
+const changePasswordMother = async (req, res, next) => {
+  try {
+    const { idCard } = req.body;
+    const targetUser = await db.MotherProfile.findOne({ where: { idCard } });
+    if (targetUser) {
+      const salt = bcryptjs.genSaltSync(Number(process.env.SALT_ROUND));
+      const hashedPassword = bcryptjs.hashSync(idCard, salt);
+      await targetUser.update({ password: hashedPassword });
+      res.status(200).send({ message: 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว' });
+    } else {
+      res.status(400).send({ message: 'ไม่มี MotherProfile นี้ในระบบ' });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getMotherProfile,
   updateMotherProfile,
+  changePasswordMother,
 };

@@ -3,7 +3,7 @@ const { Op, where } = require('sequelize');
 
 const getAnc = async (req, res, next) => {
   try {
-    const { appointmentDate, checkHospitalId, idCard, curPregId } = req.query;
+    const { appointmentDate, checkHospitalId, idCard, curPregId, isChecked } = req.query;
 
     let query = {
       include: {
@@ -35,6 +35,10 @@ const getAnc = async (req, res, next) => {
     //     appointmentDate, checkHospitalId;
     //   }
     // }
+
+    if (+isChecked) {
+      query = { ...query, where: { ...query.where, isChecked } };
+    }
 
     if (curPregId) {
       query = { ...query, where: { ...query.where, curPregId } };
@@ -114,11 +118,14 @@ const updateAnc = async (req, res, next) => {
     if (!anc) {
       return res.status(400).send({ message: 'ANC Not found' });
     }
-    await db.ANC.update(req.body, {
-      where: {
-        id,
-      },
-    });
+    await db.ANC.update(
+      { ...req.body, isChecked: true },
+      {
+        where: {
+          id,
+        },
+      }
+    );
     return res.status(200).send({ message: 'ANC update' });
   } catch (err) {
     next(err);

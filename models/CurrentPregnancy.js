@@ -17,6 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       dateByUtSize: {
         type: DataTypes.DATEONLY,
       },
+      UsAtGA: {
+        type: DataTypes.INTEGER,
+      },
+      PvAtGA: {
+        type: DataTypes.INTEGER,
+      },
+      UtAtGA: {
+        type: DataTypes.INTEGER,
+      },
       correctedBy: {
         type: DataTypes.ENUM(['LMP', 'PV', 'Ut Size', 'U/S']),
       },

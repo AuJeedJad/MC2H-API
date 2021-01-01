@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       uterusSize: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       childPosture: {
         type: DataTypes.STRING,
@@ -43,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       nippleExam: {
         type: DataTypes.ENUM('ปรกติ', 'สั้น', 'บุ๋ม', 'บอด'),
+      },
+      isChecked: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {

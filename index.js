@@ -11,6 +11,8 @@ const loginRoute = require('./routes/login');
 const motherAccountRoute = require('./routes/motherAccount');
 const motherProfileRoute = require('./routes/motherProfile');
 const motherMedicalHistoryRoute = require('./routes/motherMedicalHistory');
+const fatherProfileRoute = require('./routes/fatherProfile');
+const childProfileRoute = require('./routes/childProfile');
 const staticRiskEvaluationRoute = require('./routes/staticRiskEvaluation');
 const riskEvaluationRoute = require('./routes/riskEvaluation');
 const dentalRoute = require('./routes/dental');
@@ -19,6 +21,10 @@ const labResultRoute = require('./routes/labResult');
 const vaccineRoute = require('./routes/vaccine');
 const currentPregnancyRoute = require('./routes/currentPregnancy');
 const postnatalRoute = require('./routes/postnatal');
+const ultrasoundResultRoute = require('./routes/ultrasoundResult');
+const ultrasoundRoute = require('./routes/ultrasoundRoute');
+const motherReportRoute = require('./routes/motherReport');
+const specialExaminationRoute = require('./routes/specialExamination');
 
 const app = express();
 
@@ -33,6 +39,8 @@ app.use('/login', loginRoute);
 app.use('/staff/motherAccount', motherAccountRoute);
 app.use('/motherProfile', motherProfileRoute);
 app.use('/motherInformation', motherMedicalHistoryRoute);
+app.use('/fatherProfile', fatherProfileRoute);
+app.use('/childProfile', childProfileRoute);
 app.use('/anc', ancRoute);
 app.use('/staticRiskEvaluation', staticRiskEvaluationRoute);
 app.use('/riskEvaluation', riskEvaluationRoute);
@@ -41,6 +49,10 @@ app.use('/labResult', labResultRoute);
 app.use('/vaccine', vaccineRoute);
 app.use('/currentPregnancy', currentPregnancyRoute);
 app.use('/postnatal', postnatalRoute);
+app.use('/ultrasoundResult', ultrasoundResultRoute);
+app.use('/ultrasound', ultrasoundRoute);
+app.use('/motherReport', motherReportRoute);
+app.use('/specialExamination', specialExaminationRoute);
 
 app.use((req, res, next) => {
   res.status(404).send({ message: 'path not found on this server' });

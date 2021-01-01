@@ -4,88 +4,88 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('static_risk_evaluations', [
       {
-        checkList: 'ทารกตายในครรภ์',
-        type: 'History',
+        checkList: 'เคยมีทารกตายในครรภ์หรือเสียชีวิตเเรกเกิด ( 1 เดือนเเรก )',
+        type: 'history',
       },
       {
-        checkList: 'เเท้ง 3 ครั้ง',
-        type: 'History',
+        checkList: 'เคยเเท้ง 3 ครั้ง ติดต่อกันหรือมากกว่าติดต่อกัน',
+        type: 'history',
       },
       {
-        checkList: 'คลอดบุตรน้ำหนักน้อยกว่า 2,500 กรัม',
-        type: 'History',
+        checkList: 'เคยคลอดบุตรน้ำหนักน้อยกว่า 2500 กรัม หรือคลอดเมื่ออายุครรภ์น้อยกว่า 37 สัปดาห์',
+        type: 'history',
       },
       {
-        checkList: 'คลอดบุตรน้ำหนักมากกว่า 4,000 กรัม',
-        type: 'History',
+        checkList: 'เคยคลอดบุตรน้ำหนักมากกว่า 4000 กรัม" label="เคยคลอดบุตรน้ำหนักมากกว่า 4000 กรัม',
+        type: 'history',
       },
       {
-        checkList: 'ครรภ์เป็นพิษ',
-        type: 'History',
+        checkList: 'เคยเข้ารับการรักษาพยาบาลความดันโลหิตสูงระหว่างตั้งครรภ์หรือครรภ์เป็นพิษ',
+        type: 'history',
       },
       {
-        checkList: 'ผ่าตัดอวัยวะสืบพันธุ์',
-        type: 'History',
+        checkList: 'เคยผ่าตัดอวัยวะในระบบสืบพันธุ์ เช่น เนื้องอกมดลูก ผ่าตัดคลอด ผูกปากมดลุก ฯลฯ',
+        type: 'history',
       },
       {
         checkList: 'ครรภ์แฝด',
-        type: 'Present',
+        type: 'present',
       },
       {
-        checkList: 'อายุ < 17 ปี',
-        type: 'Present',
+        checkList: 'อายุ < 17 ปี (นับถึง EDC)',
+        type: 'present',
       },
       {
-        checkList: 'อายุ > 35 ปี',
-        type: 'Present',
+        checkList: 'อายุ > 35 ปี (นับถึง EDC)',
+        type: 'present',
       },
       {
         checkList: 'Rh negative',
-        type: 'Present',
+        type: 'present',
       },
       {
         checkList: 'เลือดออกทางช่องคลอด',
-        type: 'Present',
+        type: 'present',
       },
       {
-        checkList: 'ก้อนในอุ้งเชิงกราน',
-        type: 'Present',
+        checkList: 'มีก้อนในอุ้งเชิงกราน',
+        type: 'present',
       },
       {
-        checkList: 'ความดันโลหิต',
-        type: 'Present',
+        checkList: 'ความดันโลหิต Diastolic >= 90 mmHG',
+        type: 'present',
       },
       {
-        checkList: 'BMI < 18.5',
-        type: 'Present',
+        checkList: 'BMI < 18.5 กก./ตรม.',
+        type: 'present',
       },
       {
         checkList: 'โลหิตจาง',
-        type: 'Medicine',
+        type: 'medicine',
       },
       {
-        checkList: 'เบาหวาน',
-        type: 'Medicine',
+        checkList: 'โรคเบาหวาน',
+        type: 'medicine',
       },
       {
-        checkList: 'ไต',
-        type: 'Medicine',
+        checkList: 'โรคไต',
+        type: 'medicine',
       },
       {
-        checkList: 'หัวใจ',
-        type: 'Medicine',
+        checkList: 'โรคหัวใจ',
+        type: 'medicine',
       },
       {
-        checkList: 'ยาเสพติด',
-        type: 'Medicine',
+        checkList: 'ติดยาเสพติด ติดสุรา สูบบุหรี่ คนใกล้ชิดบุหรี่',
+        type: 'medicine',
       },
       {
-        checkList: 'โรคอายุรกรรม',
-        type: 'Medicine',
+        checkList: 'โรคอายุรกรรม อื่นๆ',
+        type: 'medicine',
       },
       {
-        checkList: 'อื่น',
-        type: 'Medicine',
+        checkList: 'อื่นๆ',
+        type: 'medicine',
       },
     ]);
   },

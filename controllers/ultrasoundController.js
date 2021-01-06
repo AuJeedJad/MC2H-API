@@ -2,23 +2,42 @@ const fs = require('fs');
 const db = require('../models');
 const cloudinary = require('cloudinary').v2;
 
-exports.addImages = (req, res, next) => {
-  console.log(req.body.usResultId);
+const util = require('util');
+
+const uploadCloud = util.promisify(cloudinary.uploader.upload);
+
+exports.addImages = async (req, res, next) => {
+  // console.log(req.body.usResultId);
   const usResultId = JSON.parse(req.body.value);
   const files = req.files;
-  console.log(files);
-  files.forEach((item) => {
-    cloudinary.uploader.upload(item.path, async (error, image) => {
-      if (error) throw error;
+  // console.log(files);
 
-      console.log(image);
-      await db.UltrasoundImage.create({
-        ultrasoundImage: image.secure_url,
-        usResultId,
-      });
-      fs.unlinkSync(item.path);
+  const targetUsResult = await db.UltrasoundResult.findOne({ where: { id: usResultId } });
+  if (!targetUsResult) {
+    return res.status(400).send({ message: 'Ultrasound result id not found.' });
+  }
+
+  // files.forEach((item) => {
+  //   cloudinary.uploader.upload(item.path, async (error, image) => {
+  //     if (error) throw error;
+
+  //     // console.log(image);
+  //     await db.UltrasoundImage.create({
+  //       ultrasoundImage: image.secure_url,
+  //       usResultId,
+  //     });
+  //     console.log('uploaded', new Date());
+  //     fs.unlinkSync(item.path);
+  //   });
+  // });
+
+  for (let i = 0; i < files.length; i++) {
+    const uploaded = await uploadCloud(files[i].path);
+    await db.UltrasoundImage.create({
+      ultrasoundImage: uploaded.secure_url,
+      usResultId,
     });
-  });
+  }
 
   res.status(201).send({ message: 'successfully upload' });
 };
@@ -92,6 +111,36 @@ exports.checkCorrectUs = async (req, res, next) => {
     } else {
       return res.status(200).send({ message: 'OK to set UltrasoundResult.isCorrect true' });
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getUltarsoundResult = async (req, res, next) => {
+  try {
+    const { ancId } = req.query;
+    const targetANC = await db.UltrasoundResult.findAll({
+      where: { ancId },
+      include: { model: db.UltrasoundImage, attributes: ['ultrasoundImage'] },
+    });
+
+    if (!targetANC) {
+      return res.status(400).send({ message: 'Anc Id not found.' });
+    }
+
+    const newTargetANC = [];
+
+    targetANC.forEach((item) => {
+      const image = item.UltrasoundImages.map((obj) => obj.ultrasoundImage);
+      const value = [];
+      for (let key in item.dataValues) {
+        if (key === 'id' || key === 'UltrasoundImages') continue;
+        value.push({ name: key, value: item[key] });
+      }
+      newTargetANC.push({ id: item.id, value, image });
+    });
+
+    res.status(200).send(newTargetANC);
   } catch (err) {
     next(err);
   }

@@ -9,5 +9,6 @@ router.post('/addImages', authStaff, upload.array('files', 10), ultrasoundContro
 router.post('/addNewUsResult', authStaff, upload.array('files', 10), ultrasoundController.addNewUsResult);
 router.patch('/editUsResult', authStaff, ultrasoundController.editUsResult);
 router.get('/checkCorrectUs', authStaff, ultrasoundController.checkCorrectUs);
+router.get('/getUltarsoundResult', authStaff, ultrasoundController.getUltarsoundResult);
 
 module.exports = router;

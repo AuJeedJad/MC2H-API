@@ -71,18 +71,27 @@ exports.addNewUsResult = async (req, res, next) => {
 
     const files = req.files;
 
-    files.forEach((item) => {
-      cloudinary.uploader.upload(item.path, async (error, image) => {
-        if (error) throw error;
+    // files.forEach((item) => {
+    //   cloudinary.uploader.upload(item.path, async (error, image) => {
+    //     if (error) throw error;
 
-        console.log(image);
-        await db.UltrasoundImage.create({
-          ultrasoundImage: image.secure_url,
-          usResultId: newUsResult.id,
-        });
-        fs.unlinkSync(item.path);
+    //     console.log(image);
+    //     await db.UltrasoundImage.create({
+    //       ultrasoundImage: image.secure_url,
+    //       usResultId: newUsResult.id,
+    //     });
+    //     fs.unlinkSync(item.path);
+    //   });
+    // });
+
+    for (let i = 0; i < files.length; i++) {
+      const uploaded = await uploadCloud(files[i].path);
+      await db.UltrasoundImage.create({
+        ultrasoundImage: uploaded.secure_url,
+        usResultId: newUsResult.id,
       });
-    });
+    }
+
     res.status(201).send(newUsResult);
   } catch (err) {
     next(err);

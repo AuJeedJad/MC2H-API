@@ -56,11 +56,11 @@ module.exports = (sequelize, DataTypes) => {
       downsyndromeScreen: {
         type: DataTypes.BOOLEAN,
       },
-      amniocentesis: {
-        type: DataTypes.STRING,
-      },
       riskEvaluate: {
         type: DataTypes.ENUM(['Low', 'High']),
+      },
+      amniocentesis: {
+        type: DataTypes.STRING,
       },
       otherLabResult: {
         type: DataTypes.STRING,

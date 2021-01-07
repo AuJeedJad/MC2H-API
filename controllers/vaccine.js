@@ -10,9 +10,8 @@ const recordVaccine = async (req, res) => {
     const targetCurPreg = await db.CurrentPregnancy.findOne({
       where: { id: curPregId, inactiveDate: { [Op.gte]: new Date() } },
     });
-
     if (!targetCurPreg) {
-      return res.status(400).send({ message: '' });
+      return res.status(400).send({ message: 'Not Found' });
     }
 
     const targetVaccine = await db.Vaccine.findOne({ where: { curPregId } });

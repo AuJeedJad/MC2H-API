@@ -11,11 +11,12 @@ const recordLabResult = async (req, res) => {
       where: { id: curPregId, inactiveDate: { [Op.gte]: new Date() } },
     });
     if (!targetCurPreg) {
-      return res.status(400).send({ message: '' });
+      return res.status(400).send({ message: 'Not Found' });
     }
 
     const {
       labResultId,
+      date,
       bloodGroup,
       hctHb,
       ofMcvMch,
@@ -27,51 +28,12 @@ const recordLabResult = async (req, res) => {
       hiv,
       role,
     } = req.body;
-
-    // if (!bloodGroup) {
-    //   return res.status(400).send({ message: 'Please enter result of Blood group.' });
-    // }
-
-    // if (!hctHb) {
-    //   return res.status(400).send({ message: 'Please enter result of Hct/Hb.' });
-    // }
-
-    // if (!ofMcvMch) {
-    //   return res.status(400).send({ message: 'Please enter result of OF/MCV, MCH.' });
-    // }
-
-    // if (!dcip) {
-    //   return res.status(400).send({ message: 'Please enter result of DCIP.' });
-    // }
-
-    // if (!hbTyping) {
-    //   return res.status(400).send({ message: 'Please enter result of Hb typing.' });
-    // }
-
-    // if (!pcr) {
-    //   return res.status(400).send({ message: 'Please enter result of PCR.' });
-    // }
-
-    // if (!hepatitisBVirus) {
-    //   return res.status(400).send({ message: 'Please enter result of hepatitis B Virus.' });
-    // }
-
-    // if (!syphilis) {
-    //   return res.status(400).send({ message: 'Please enter result of syphilis.' });
-    // }
-
-    // if (!hiv) {
-    //   return res.status(400).send({ message: 'Please enter result of HIV.' });
-    // }
-
-    // if (!role) {
-    //   return res.status(400).send({ message: 'Please choose mother or father.' });
-    // }
-
+    console.log(labResultId);
     const targetLabResult = await db.LabResult.findOne({ where: { id: labResultId ? labResultId : null, curPregId } });
     if (targetLabResult) {
       //Update
       await targetLabResult.update({
+        date,
         bloodGroup,
         hctHb,
         ofMcvMch,
@@ -88,6 +50,7 @@ const recordLabResult = async (req, res) => {
       //Create
       const newLabResult = await db.LabResult.create({
         curPregId,
+        date,
         bloodGroup,
         hctHb,
         ofMcvMch,
@@ -99,6 +62,7 @@ const recordLabResult = async (req, res) => {
         hiv,
         role,
       });
+      console.log(JSON.stringify(newLabResult));
       res.status(201).send(newLabResult);
     }
   } catch (err) {
@@ -107,4 +71,47 @@ const recordLabResult = async (req, res) => {
   }
 };
 
-module.exports = { recordLabResult };
+const readAllLabResult = async (req, res, next) => {
+  try {
+    const curPregId = req.params.id;
+    console.log(`curPregId : ${curPregId}`);
+    if (!curPregId) {
+      return res.status(400).send({ message: 'Please check curPregId.' });
+    }
+
+    const allLabResultMother = await db.LabResult.findAll({ where: { curPregId: curPregId, role: 'mother' } });
+    if (!allLabResultMother) {
+      return res.status(400).send({ message: 'Not Found' });
+    }
+    const allLabResultFather = await db.LabResult.findAll({ where: { curPregId: curPregId, role: 'father' } });
+    if (!allLabResultFather) {
+      return res.status(400).send({ message: 'Not Found' });
+    }
+    console.log(JSON.stringify(allLabResultMother, allLabResultFather));
+    res.status(200).send({ allLabResultMother, allLabResultFather });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readLabResultById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(`curPregId : ${id}`);
+    if (!id) {
+      return res.status(400).send({ message: 'Please check Lab Result Id.' });
+    }
+
+    const targetLabResult = await db.LabResult.findOne({ where: { id } });
+    if (!targetLabResult) {
+      return res.status(400).send({ message: 'Not Found' });
+    }
+
+    console.log(JSON.stringify(targetLabResult));
+    res.status(200).send({ targetLabResult });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { recordLabResult, readAllLabResult, readLabResultById };

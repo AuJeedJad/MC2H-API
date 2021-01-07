@@ -2,6 +2,9 @@ module.exports = (sequelize, DataTypes) => {
   const LabResult = sequelize.define(
     'LabResult',
     {
+      date: {
+        type: DataTypes.DATEONLY(),
+      },
       bloodGroup: {
         type: DataTypes.STRING,
       },

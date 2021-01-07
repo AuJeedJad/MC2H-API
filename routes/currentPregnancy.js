@@ -3,8 +3,7 @@ const passport = require('passport');
 const {
   recordWeightAndHeightOfMother,
   recordDownsyndrome,
-  recordCoupleCounsel,
-  recordParentSchool,
+  recordCoupleCounselAndParentSchool,
   updateNote,
   getCurrentPregnancy,
   getCurrentPregnancy1,
@@ -14,8 +13,7 @@ const authStaff = passport.authenticate('jwt-staff', { session: false });
 
 router.post('/pregnantHistory', authStaff, recordWeightAndHeightOfMother);
 router.post('/downsyndrome', authStaff, recordDownsyndrome);
-router.post('/coupleCounsel', authStaff, recordCoupleCounsel);
-router.post('/parentSchool', authStaff, recordParentSchool);
+router.post('/coupleCounselAndParentSchool', authStaff, recordCoupleCounselAndParentSchool);
 
 router.patch('/note/:id', updateNote);
 router.get('/:id', getCurrentPregnancy);

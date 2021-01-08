@@ -97,9 +97,9 @@ const readAllLabResult = async (req, res, next) => {
 const readLabResultById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    console.log(`curPregId : ${id}`);
+    console.log(`Lab Result ID : ${id}`);
     if (!id) {
-      return res.status(400).send({ message: 'Please check Lab Result Id.' });
+      return res.status(400).send({ message: 'Please check Lab Result ID.' });
     }
 
     const targetLabResult = await db.LabResult.findOne({ where: { id } });

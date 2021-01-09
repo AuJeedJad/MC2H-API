@@ -11,6 +11,8 @@ const recordPregnancyHistoryOfMother = async (req, res) => {
       where: { id: curPregId, inactiveDate: { [Op.gte]: new Date() } },
     });
 
+    console.log(targetCurPreg);
+
     if (!targetCurPreg) {
       return res.status(400).send({ message: 'Not Found' });
     } else {
@@ -20,22 +22,21 @@ const recordPregnancyHistoryOfMother = async (req, res) => {
         lastPeriodDate,
         numberOfChildren,
         birthDateOfLastChildren,
-        complicationAtBirth,
-        complicationAfterBirth,
         beforePregWeight,
         beforePregHeight,
       } = req.body;
+
       await targetCurPreg.update({
         pregnancyNumber,
         numberOfCesarean,
         lastPeriodDate,
         numberOfChildren,
         birthDateOfLastChildren,
-        complicationAtBirth,
-        complicationAfterBirth,
         beforePregWeight,
         beforePregHeight,
       });
+
+      res.status(200).send({ message: 'Updated PregnancyHistory in CurrentPregnancy' });
     }
   } catch (err) {
     res.status(500).send({ message: err.message });

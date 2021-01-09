@@ -31,7 +31,6 @@ const recordVaccine = async (req, res) => {
       } = req.body;
 
       await targetVaccine.update({
-        curPregId,
         tetanusCountBefore,
         lastTetanusHxDate,
         tetausDosePefered,
@@ -48,6 +47,7 @@ const recordVaccine = async (req, res) => {
     } else {
       //create
       const {
+        curPregId,
         tetanusCountBefore,
         lastTetanusHxDate,
         tetausDosePefered,
@@ -84,7 +84,7 @@ const recordVaccine = async (req, res) => {
 
 const readVaccineByCurPregId = async (req, res, next) => {
   try {
-    const { curPregId } = req.params;
+    const curPregId = req.params.id;
     console.log(`CurPreg ID : ${curPregId}`);
     if (!curPregId) {
       return res.status(400).send({ message: 'Please check CurPreg ID.' });

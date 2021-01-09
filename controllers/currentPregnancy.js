@@ -1,7 +1,7 @@
 const db = require('../models');
 const { Op } = require('sequelize');
 
-const recordWeightAndHeightOfMother = async (req, res) => {
+const recordPregnancyHistoryOfMother = async (req, res) => {
   try {
     const { curPregId } = req.body;
     if (!curPregId) {
@@ -14,8 +14,28 @@ const recordWeightAndHeightOfMother = async (req, res) => {
     if (!targetCurPreg) {
       return res.status(400).send({ message: 'Not Found' });
     } else {
-      const { beforePregWeight, beforePregHeight } = req.body;
-      await targetCurPreg.update({ beforePregWeight, beforePregHeight });
+      const {
+        pregnancyNumber,
+        numberOfCesarean,
+        lastPeriodDate,
+        numberOfChildren,
+        birthDateOfLastChildren,
+        complicationAtBirth,
+        complicationAfterBirth,
+        beforePregWeight,
+        beforePregHeight,
+      } = req.body;
+      await targetCurPreg.update({
+        pregnancyNumber,
+        numberOfCesarean,
+        lastPeriodDate,
+        numberOfChildren,
+        birthDateOfLastChildren,
+        complicationAtBirth,
+        complicationAfterBirth,
+        beforePregWeight,
+        beforePregHeight,
+      });
     }
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -121,7 +141,7 @@ const getCurrentPregnancy = async (req, res, next) => {
 // };
 
 module.exports = {
-  recordWeightAndHeightOfMother,
+  recordPregnancyHistoryOfMother,
   recordDownsyndrome,
   recordCoupleCounselAndParentSchool,
   updateNote,

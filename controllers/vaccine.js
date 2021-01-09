@@ -31,7 +31,6 @@ const recordVaccine = async (req, res) => {
       } = req.body;
 
       await targetVaccine.update({
-        curPregId,
         tetanusCountBefore,
         lastTetanusHxDate,
         tetausDosePefered,
@@ -48,6 +47,7 @@ const recordVaccine = async (req, res) => {
     } else {
       //create
       const {
+        curPregId,
         tetanusCountBefore,
         lastTetanusHxDate,
         tetausDosePefered,
@@ -82,4 +82,24 @@ const recordVaccine = async (req, res) => {
   }
 };
 
-module.exports = { recordVaccine };
+const readVaccineByCurPregId = async (req, res, next) => {
+  try {
+    const curPregId = req.params.id;
+    console.log(`CurPreg ID : ${curPregId}`);
+    if (!curPregId) {
+      return res.status(400).send({ message: 'Please check CurPreg ID.' });
+    }
+
+    const targetVaccine = await db.Vaccine.findOne({ where: { curPregId } });
+    if (!targetVaccine) {
+      return res.status(400).send({ message: 'Not Found' });
+    }
+
+    console.log(JSON.stringify(targetVaccine));
+    res.status(200).send({ targetVaccine });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { recordVaccine, readVaccineByCurPregId };

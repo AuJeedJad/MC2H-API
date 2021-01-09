@@ -47,6 +47,24 @@ module.exports = (sequelize, DataTypes) => {
       complicationAfterBirth: {
         type: DataTypes.BOOLEAN,
       },
+      pregnancyNumber: {
+        type: DataTypes.INTEGER,
+      },
+      numberOfCesarean: {
+        //จำนวนครั้งที่เคยผ่าตัดคลอด
+        type: DataTypes.INTEGER,
+      },
+      lastPeriodDate: {
+        type: DataTypes.DATEONLY,
+      },
+      numberOfChildren: {
+        //จำนวนบุตรที่มีชีวิต
+        type: DataTypes.INTEGER,
+      },
+      birthDateOfLastChildren: {
+        //อายุ(ปี)บุตรคนสุดท้าย
+        type: DataTypes.DATEONLY,
+      },
       beforePregWeight: {
         type: DataTypes.DOUBLE,
       },

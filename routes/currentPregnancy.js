@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const {
-  recordWeightAndHeightOfMother,
+  recordPregnancyHistoryOfMother,
   recordDownsyndrome,
   recordCoupleCounselAndParentSchool,
   updateNote,
@@ -11,7 +11,7 @@ const {
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });
 
-router.post('/pregnantHistory', authStaff, recordWeightAndHeightOfMother);
+router.post('/pregnantHistory', authStaff, recordPregnancyHistoryOfMother);
 router.post('/downsyndrome', authStaff, recordDownsyndrome);
 router.post('/coupleCounselAndParentSchool', authStaff, recordCoupleCounselAndParentSchool);
 

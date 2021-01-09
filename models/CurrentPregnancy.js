@@ -44,23 +44,19 @@ module.exports = (sequelize, DataTypes) => {
       pregnancyNumber: {
         type: DataTypes.INTEGER,
       },
-      lastPeriodDate: {
-        type: DataTypes.DATEONLY,
-      },
       numberOfCesarean: {
         //จำนวนครั้งที่เคยผ่าตัดคลอด
         type: DataTypes.INTEGER,
+      },
+      lastPeriodDate: {
+        type: DataTypes.DATEONLY,
       },
       numberOfChildren: {
         //จำนวนบุตรที่มีชีวิต
         type: DataTypes.INTEGER,
       },
-      yearAgeOfLastChildren: {
+      birthDateOfLastChildren: {
         //อายุ(ปี)บุตรคนสุดท้าย
-        type: DataTypes.INTEGER,
-      },
-      monthAgeOfLastChildren: {
-        //อายุ(เดือน)บุตรคนสุดท้าย
         type: DataTypes.INTEGER,
       },
       complicationAtBirth: {

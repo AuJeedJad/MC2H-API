@@ -41,6 +41,12 @@ module.exports = (sequelize, DataTypes) => {
       deliveryMethod: {
         type: DataTypes.STRING,
       },
+      complicationAtBirth: {
+        type: DataTypes.BOOLEAN,
+      },
+      complicationAfterBirth: {
+        type: DataTypes.BOOLEAN,
+      },
       pregnancyNumber: {
         type: DataTypes.INTEGER,
       },
@@ -57,13 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       birthDateOfLastChildren: {
         //อายุ(ปี)บุตรคนสุดท้าย
-        type: DataTypes.INTEGER,
-      },
-      complicationAtBirth: {
-        type: DataTypes.BOOLEAN,
-      },
-      complicationAfterBirth: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.DATEONLY,
       },
       beforePregWeight: {
         type: DataTypes.DOUBLE,

@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       date: {
         type: DataTypes.DATEONLY(),
+        allowNull: true,
       },
       bloodGroup: {
         type: DataTypes.STRING,

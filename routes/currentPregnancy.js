@@ -6,7 +6,6 @@ const {
   recordCoupleCounselAndParentSchool,
   updateNote,
   getCurrentPregnancy,
-  getCurrentPregnancy1,
 } = require('../controllers/currentPregnancy');
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });

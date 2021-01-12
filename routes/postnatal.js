@@ -4,6 +4,6 @@ const { fastTerminate, terminate } = require('../controllers/postnatal');
 
 const authStaff = passport.authenticate('jwt-staff', { session: false });
 router.patch('/fastTerminate', authStaff, fastTerminate);
-router.post('/fastTerminate', authStaff, terminate);
+router.patch('/terminate', authStaff, terminate);
 
 module.exports = router;

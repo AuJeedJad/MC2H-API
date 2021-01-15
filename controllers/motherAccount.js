@@ -150,8 +150,10 @@ const createCurrentPregnancy = async (req, res) => {
     if (!targetMotherProfile) {
       return res.status(404).send({ message: 'ไม่พบ motherProfile ID ในฐานข้อมูล' });
     }
+    targetMotherProfile.isActive = true;
+    targetMotherProfile.save();
 
-    const newCurrentPregnancy = await db.CurrentPregnancy.create({ motherId: targetMotherProfile.id });
+    await db.CurrentPregnancy.create({ motherId: targetMotherProfile.id });
     res.status(201).send({ message: 'สร้างครรภ์ใหม่เรียบร้อยแล้ว' });
   } catch (err) {
     res.status(500).send({ message: err.message });

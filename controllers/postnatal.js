@@ -47,8 +47,15 @@ const terminate = async (req, res, next) => {
     }
 
     targetCurPreg.giveBirthAt = terminateAt;
-    targetCurPreg.inactiveDate = new Date().toString().slice(0, 10);
+    targetCurPreg.inactiveDate =
+      new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + new Date().getDate();
     await targetCurPreg.save();
+
+    //logicนี้จะต้องแก้หากคิดพํฒนาหลังคลอดต่อ
+    const motherId = targetCurPreg.motherId;
+    const targetMother = await db.MotherProfile.findOne({ where: { id: motherId } });
+    targetMother.isActive = false;
+    await targetMother.save();
 
     res.status(200).send({ message: 'success' });
   } catch (err) {
